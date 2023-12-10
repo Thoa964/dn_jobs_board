@@ -7,8 +7,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="Firmbee.com - Free Project Management Platform for remote teams">
-    <meta name="author" content="Firmbee.com - Free Project Management Platform for remote teams">
     <title>{{ config('app.name', '') }} - {{ ucfirst(Route::currentRouteName()) }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +28,8 @@
 </main>
 <!-- Footer -->
 @include('layouts._footer')
-<div class="fb2022-copy">Fbee 2022 copyright</div>
-<script src="js/nav-bg.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="{{ asset('js/nav-bg.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>

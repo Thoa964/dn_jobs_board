@@ -1,3 +1,13 @@
+@php
+    $header = [
+        'home' => '',
+        'about' => '',
+        'contact' => '',
+    ];
+
+    $currentRoute = Request::route()->getName();
+@endphp
+
 <nav class="navbar navbar-expand-xl fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#"><img claass="w-100" src="{{ asset('img/icon/company-logo.svg') }}" alt=""></a>
@@ -6,26 +16,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-card-item">
-                    <a class="nav-link  active" href="">Home</a>
-                </li>
-                <li class="nav-card-item">
-                    <a class="nav-link" href="aboutus.html">About</a>
-                </li>
-                <li class="nav-card-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-card-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
+                @foreach($header as $item => $link)
+                    <li class="nav-card-item">
+                        <a class="nav-link {{ $currentRoute == $item ? 'active' : '' }}" href="{{ $link }}">{{ __("_header.$item") }}</a>
+                    </li>
+                @endforeach
             </ul>
             @guest()
                 <ul class="right navbar-nav ms-auto">
                     <li class="nav-card-item-right">
-                        <a class="nav-link" href="{{ route('login') }}">Sign in</a>
+                        <a class="nav-link {{ $currentRoute == 'login' ? 'active' : '' }}" href="{{ route('login') }}">{{ __("_header.login") }}</a>
                     </li>
                     <li class="nav-card-item-right create-account">
-                        <a class="nav-link" href="{{ route('register') }}">Create account</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __("_header.register") }}</a>
                     </li>
                 </ul>
             @else
@@ -37,7 +40,7 @@
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
-                                <a type="submit" class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                                <a type="submit" class="dropdown-item" href="#" onclick="event.preventDefault(); this.closest('form').submit();">{{ __("_header.logout") }}</a>
                             </form>
                         </li>
                     </ul>
