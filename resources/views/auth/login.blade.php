@@ -16,13 +16,13 @@
                             @csrf
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="form2Example1" class="form-control" name="email" />
-                                <label class="form-label" for="form2Example1">{{ __('login.email') }}</label>
+                                <input type="text" id="form2Example1" class="form-control" name="tai_khoan" />
+                                <label class="form-label" for="form2Example1">{{ __('login.tai_khoan') }}</label>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="form2Example2" class="form-control" name="password" />
+                                <input type="password" id="form2Example2" class="form-control" name="mat_khau" />
                                 <label class="form-label" for="form2Example2">{{ __('login.password') }}</label>
                             </div>
 

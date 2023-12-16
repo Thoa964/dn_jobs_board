@@ -8,4 +8,5 @@ return [
     'register' => 'Đăng ký',
     'already_have_an_account?' => 'Đã có tài khoản?',
     'login' => 'Đăng nhập',
+    'tai_khoan' => 'Tài khoản',
 ];

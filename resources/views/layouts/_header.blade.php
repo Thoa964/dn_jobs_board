@@ -34,7 +34,7 @@
             @else
                 <div class="dropdown ms-auto">
                     <a class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user"></i> {{ Auth::user()->name }}
+                        <i class="fa fa-user"></i> {{ Auth::user()->ten }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li>

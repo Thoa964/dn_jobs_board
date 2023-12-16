@@ -6,4 +6,5 @@ return [
     'remember' => 'Ghi nhớ',
     'forgot' => 'Quên mật khẩu',
     'sign_in' => 'Đăng nhập',
+    'tai_khoan' => 'Tài khoản',
 ];

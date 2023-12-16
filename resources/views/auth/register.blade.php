@@ -11,49 +11,32 @@
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('register.name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input id="name" type="text" class="form-control @error('ten') is-invalid @enderror" name="ten" value="{{ old('ten') }}" required autocomplete="name" autofocus>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('register.email') }}</label>
+                        <label for="tai_khoan" class="col-md-4 col-form-label text-md-end">{{ __('register.tai_khoan') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input id="tai_khoan" type="text" class="form-control @error('tai_khoan') is-invalid @enderror"
+                                   name="tai_khoan" value="{{ old('tai_khoan') }}" required>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('register.password') }}</label>
+                        <label for="mat_khau" class="col-md-4 col-form-label text-md-end">{{ __('register.password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <input id="mat_khau" type="password" class="form-control @error('mat_khau') is-invalid @enderror" name="mat_khau" required>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('register.confirm_password') }}</label>
+                        <label for="mat_khau-confirm" class="col-md-4 col-form-label text-md-end">{{ __('register.confirm_password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="mat_khau-confirm" type="password" class="form-control" name="mat_khau_confirmation" required>
                         </div>
                     </div>
 
