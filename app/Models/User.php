@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\Common;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -19,6 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'avatar',
         'ten',
         'tai_khoan',
         'mat_khau',
@@ -33,6 +36,12 @@ class User extends Authenticatable
         'trang_thai',
         'gioi_tinh',
         'ngay_sinh',
+    ];
+
+    protected $appends = [
+        'ten_phuong',
+        'gender',
+        'avatar_path'
     ];
 
     /**
@@ -53,10 +62,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'mat_khau' => 'hashed',
+        'gioi_tinh' => 'boolean',
     ];
 
     public function getAuthPassword()
     {
         return $this->mat_khau;
+    }
+
+    public function phuong(): BelongsTo {
+        return $this->belongsTo(Phuong::class, 'ma_phuong', 'ma_phuong');
+    }
+
+    public function getTenPhuongAttribute(): string {
+        return $this->phuong->ten_phuong ?? '';
+    }
+
+    public function getGenderAttribute(): string {
+        return $this->gioi_tinh ? Common::MALE : Common::FEMALE;
+    }
+
+    public function getAvatarPathAttribute(): string {
+        return Common::UPLOAD_AVATAR_PATH . ($this->avatar ?? Common::DEFAULT_AVATAR_NAME);
     }
 }

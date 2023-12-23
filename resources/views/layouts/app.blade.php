@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap/5.1.0/bootstrap.min.css') }}">
     <script src="{{ asset('js/fontawesome.js') }}" crossorigin="anonymous"></script>
     <script src="{{ asset('js/custom.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/jquery/3.6.0/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/toastify-js.js') }}"></script>
     {{--    Toastify --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/toastify.min.css') }}">
