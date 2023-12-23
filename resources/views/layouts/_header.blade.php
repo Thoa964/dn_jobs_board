@@ -1,6 +1,6 @@
 @php
     $header = [
-        'home' => '',
+        'home' => route('Trang chủ'),
         'about' => '',
         'contact' => '',
     ];
@@ -37,6 +37,9 @@
                         <i class="fa fa-user"></i> {{ Auth::user()->ten }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a href="{{ route('Thông tin cá nhân') }}" class="dropdown-item">{{ __("_header.profile") }}</a>
+                        </li>
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
