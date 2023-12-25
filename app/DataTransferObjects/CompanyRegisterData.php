@@ -12,7 +12,7 @@ class CompanyRegisterData extends DataTransferObject
             'tai_khoan' => $request->get('email'),
             'email' => $request->get('email'),
             'mat_khau' => $request->get('mat_khau'),
-            'ten' => $request->get('ten'),
+            'ten' => ucfirst($request->get('ten')),
             'dia_chi' => $request->get('dia_chi'),
             'sdt' => $request->get('sdt'),
             'ten_cong_ty' => $request->get('ten_cong_ty'),

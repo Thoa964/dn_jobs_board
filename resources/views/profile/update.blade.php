@@ -59,7 +59,7 @@
                                     <select class="form-select" id="quan" name="quan">
                                         <option value="">-- Chọn quận --</option>
                                         @foreach($quan as $item)
-                                            @php($selected = $profile->phuong->quan->ma_quan == $item->ma_quan ? 'selected' : '')
+                                            @php($selected = $profile->phuong ? $profile->phuong->quan->ma_quan == $item->ma_quan ? 'selected' : '' : '')
                                             <option value="{{ $item->ma_quan }}" {{ $selected }}>
                                                 {{ $item->ten_quan }}
                                             </option>
