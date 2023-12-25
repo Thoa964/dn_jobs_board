@@ -36,6 +36,7 @@ class User extends Authenticatable
         'trang_thai',
         'gioi_tinh',
         'ngay_sinh',
+        'ten_cong_ty',
     ];
 
     protected $appends = [
