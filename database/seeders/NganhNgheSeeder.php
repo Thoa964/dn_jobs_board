@@ -1,0 +1,111 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class NganhNgheSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $nganhNgheData = [
+            ['ten_nganh_nghe' => 'IT - Công nghệ thông tin'],
+            ['ten_nganh_nghe' => 'Y tế - Dược học'],
+            ['ten_nganh_nghe' => 'Tài chính - Ngân hàng'],
+            ['ten_nganh_nghe' => 'Kinh doanh - Quản trị'],
+            ['ten_nganh_nghe' => 'Giáo dục - Đào tạo'],
+            ['ten_nganh_nghe' => 'Thực phẩm - Dinh dưỡng'],
+            ['ten_nganh_nghe' => 'Nghệ thuật - Thiết kế'],
+            ['ten_nganh_nghe' => 'Xây dựng - Kiến trúc'],
+            ['ten_nganh_nghe' => 'Nông nghiệp - Lâm nghiệp'],
+            ['ten_nganh_nghe' => 'Du lịch - Khách sạn'],
+            ['ten_nganh_nghe' => 'Bán lẻ'],
+            ['ten_nganh_nghe' => 'Điện tử - Viễn thông'],
+            ['ten_nganh_nghe' => 'Marketing - Quảng cáo'],
+            ['ten_nganh_nghe' => 'Môi trường - Địa chất'],
+            ['ten_nganh_nghe' => 'Thể thao - Giải trí'],
+            ['ten_nganh_nghe' => 'Thời trang - Làm đẹp'],
+            ['ten_nganh_nghe' => 'Chăm sóc sức khỏe'],
+            ['ten_nganh_nghe' => 'Nguồn nhân lực'],
+            ['ten_nganh_nghe' => 'Bảo hiểm'],
+            ['ten_nganh_nghe' => 'Kiểm toán - Tư vấn thuế'],
+            ['ten_nganh_nghe' => 'Năng lượng - Môi trường'],
+            ['ten_nganh_nghe' => 'Phân phối - Vận chuyển'],
+            ['ten_nganh_nghe' => 'Ngân hàng - Tài chính'],
+            ['ten_nganh_nghe' => 'Thực phẩm - Đồ uống'],
+            ['ten_nganh_nghe' => 'Chăm sóc thú cưng'],
+            ['ten_nganh_nghe' => 'Bất động sản'],
+            ['ten_nganh_nghe' => 'Dịch vụ cộng đồng'],
+            ['ten_nganh_nghe' => 'Kỹ thuật - Công nghệ'],
+            ['ten_nganh_nghe' => 'Quảng cáo - Truyền thông'],
+            ['ten_nganh_nghe' => 'Nghệ thuật - Văn hóa'],
+            ['ten_nganh_nghe' => 'Viễn thông'],
+            ['ten_nganh_nghe' => 'Thiết kế - Mỹ thuật'],
+            ['ten_nganh_nghe' => 'Chăn nuôi - Nông nghiệp'],
+            ['ten_nganh_nghe' => 'Hóa học - Dược học'],
+            ['ten_nganh_nghe' => 'Dệt may - Da giày'],
+            ['ten_nganh_nghe' => 'Hàng không - Du lịch'],
+            ['ten_nganh_nghe' => 'Xe hơi - Vận tải'],
+            ['ten_nganh_nghe' => 'Thể thao - Giải trí'],
+            ['ten_nganh_nghe' => 'Luật sư - Pháp lý'],
+            ['ten_nganh_nghe' => 'Giáo dục - Đào tạo'],
+            ['ten_nganh_nghe' => 'Tư vấn quản lý'],
+            ['ten_nganh_nghe' => 'Khoa học - Nghiên cứu'],
+            ['ten_nganh_nghe' => 'Y tế - Dịch vụ y tế'],
+            ['ten_nganh_nghe' => 'Bán lẻ - Thương mại điện tử'],
+            ['ten_nganh_nghe' => 'Kiến trúc - Xây dựng'],
+            ['ten_nganh_nghe' => 'Tự doanh - Freelance'],
+            ['ten_nganh_nghe' => 'Công nghiệp - Sản xuất'],
+            ['ten_nganh_nghe' => 'Internet - Online Services'],
+            ['ten_nganh_nghe' => 'Tự nhiên - Môi trường'],
+            ['ten_nganh_nghe' => 'Dịch vụ khách hàng'],
+            ['ten_nganh_nghe' => 'Trang trí nội thất'],
+            ['ten_nganh_nghe' => 'An ninh - Bảo vệ'],
+            ['ten_nganh_nghe' => 'Kế toán - Kiểm toán'],
+            ['ten_nganh_nghe' => 'Thời trang - Làm đẹp'],
+            ['ten_nganh_nghe' => 'Nghệ thuật kịch - Sân khấu'],
+            ['ten_nganh_nghe' => 'Tin học - Máy tính'],
+            ['ten_nganh_nghe' => 'Thực phẩm - Dinh dưỡng'],
+            ['ten_nganh_nghe' => 'Nghệ thuật âm nhạc'],
+            ['ten_nganh_nghe' => 'Truyền hình - Điện ảnh'],
+            ['ten_nganh_nghe' => 'Thể thao nước - Lướt sóng'],
+            ['ten_nganh_nghe' => 'Hệ thống - Mạng'],
+            ['ten_nganh_nghe' => 'Dầu khí - Khai thác'],
+            ['ten_nganh_nghe' => 'Bảo dưỡng - Sửa chữa'],
+            ['ten_nganh_nghe' => 'Chăm sóc sức khỏe'],
+            ['ten_nganh_nghe' => 'Nghiên cứu thị trường'],
+            ['ten_nganh_nghe' => 'Tài chính cá nhân'],
+            ['ten_nganh_nghe' => 'Nghệ thuật số - Phương tiện truyền thông'],
+            ['ten_nganh_nghe' => 'Điện tử - Viễn thông'],
+            ['ten_nganh_nghe' => 'Xuất nhập khẩu - Logistics'],
+            ['ten_nganh_nghe' => 'Hỗ trợ kỹ thuật'],
+            ['ten_nganh_nghe' => 'Bảo hiểm'],
+            ['ten_nganh_nghe' => 'Chế biến thực phẩm'],
+            ['ten_nganh_nghe' => 'Nấu ăn - Dịch vụ ẩm thực'],
+            ['ten_nganh_nghe' => 'Nghệ thuật điện ảnh'],
+            ['ten_nganh_nghe' => 'Quản lý dự án'],
+            ['ten_nganh_nghe' => 'Du lịch - Dịch vụ du lịch'],
+            ['ten_nganh_nghe' => 'Thực tập sinh - Sinh viên'],
+            ['ten_nganh_nghe' => 'Bảo vệ môi trường'],
+            ['ten_nganh_nghe' => 'Truyền thông - Biên tập viên'],
+            ['ten_nganh_nghe' => 'Công nghệ thông tin - IT'],
+            ['ten_nganh_nghe' => 'Dịch vụ internet'],
+            ['ten_nganh_nghe' => 'Thư ký - Trợ lý'],
+            ['ten_nganh_nghe' => 'Vật liệu xây dựng'],
+            ['ten_nganh_nghe' => 'Giám sát - Quản lý chất lượng'],
+            ['ten_nganh_nghe' => 'Bán hàng - Kinh doanh'],
+            ['ten_nganh_nghe' => 'Xuất bản - In ấn'],
+            ['ten_nganh_nghe' => 'Xử lý nước - Môi trường'],
+            ['ten_nganh_nghe' => 'Kiến trúc - Thiết kế nội thất'],
+            ['ten_nganh_nghe' => 'Điều dưỡng - Y tá'],
+            ['ten_nganh_nghe' => 'Dịch vụ máy tính - IT support'],
+        ];
+
+        DB::table('tbl_nganh_nghe')->insert($nganhNgheData);
+    }
+}

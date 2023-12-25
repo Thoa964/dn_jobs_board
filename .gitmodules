@@ -1,0 +1,3 @@
+[submodule "bot-crawler"]
+	path = bot-crawler
+	url = git@github.com:Thoa964/bot-crawler.git
