@@ -40,6 +40,10 @@
                         </div>
                     </div>
 
+                    <div class="row mb-3">
+                        <a class="col-md-6 offset-md-4" href="{{ route(__('register.company')) }}">{{ __('register.company') }}</a>
+                    </div>
+
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="main-btn">

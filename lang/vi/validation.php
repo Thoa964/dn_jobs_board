@@ -168,9 +168,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'ten_cong_ty_phai_trung_voi_ma_so_thue' => 'Tên công ty phải trùng với mã số thuế',
+        'ten_nguoi_dai_dien_khong_chinh_xac' => 'Tên người đại diện không chính xác',
+        'so_dien_thoai_khong_chinh_xac' => 'Số điện thoại không chính xác',
     ],
 
     /*

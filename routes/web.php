@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhuongController;
 use App\Http\Controllers\ProfileController;
@@ -19,8 +20,15 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::post('/login', [
+    'uses' => 'App\Http\Controllers\Auth\LoginController@login',
+    'middleware' => 'phe_duyet'
+]);
+
 Route::group(['prefix' => ''], function () {
     Route::get('/', [HomeController::class, 'index'])->name('Trang chủ');
+    Route::get('/register/company', [RegisterController::class, 'companyRegister'])->name(__('register.company'));
+    Route::post('/register/company', [RegisterController::class, 'doRegister'])->name('company.register');
     Route::post('/ward', [PhuongController::class, 'getPhuongByQuan'])->name('getPhuongByQuan');
 });
 

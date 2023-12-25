@@ -20,7 +20,7 @@ class PhuongController extends Controller
         $user = Auth::user();
 
         foreach ($phuong as $item) {
-            $selected = ($item->ma_phuong == $user->ma_phuong) ? 'selected' : '';
+            $selected = $user && ($item->ma_phuong == $user->ma_phuong) ? 'selected' : '';
             $result .= '<option value="'.$item->ma_phuong.'" '.$selected.'>'.$item->ten_phuong.'</option>';
         }
 
