@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Common;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -85,5 +86,9 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute(): string {
         return Common::UPLOAD_AVATAR_PATH . ($this->avatar ?? Common::DEFAULT_AVATAR_NAME);
+    }
+
+    public function danhSachBaiDang(): HasMany {
+        return $this->hasMany(BaiDang::class, 'tai_khoan', 'tai_khoan');
     }
 }
