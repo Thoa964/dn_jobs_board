@@ -10,3 +10,21 @@ main {
     color: #92d35e;
     font-weight: bold;
 }
+
+.offert-wrapper {
+    margin-bottom: 50px !important;
+}
+
+ul.pagination {
+    gap: 10px;
+
+    .page-link {
+        box-sizing: border-box !important;
+        border-radius: 99px !important;
+    }
+}
+
+.active .page-link {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;;
+}
