@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PhuongController;
 use App\Http\Controllers\ProfileController;
@@ -30,6 +31,11 @@ Route::group(['prefix' => ''], function () {
     Route::get('/register/company', [RegisterController::class, 'companyRegister'])->name(__('register.company'));
     Route::post('/register/company', [RegisterController::class, 'doRegister'])->name('company.register');
     Route::post('/ward', [PhuongController::class, 'getPhuongByQuan'])->name('getPhuongByQuan');
+});
+
+Route::group(['prefix' => 'jobs'], function () {
+    Route::get('/', [BaiDangController::class, 'index'])->name('Danh sách công việc');
+    Route::get('/{ma_bai_dang}', [BaiDangController::class, 'show'])->name('Chi tiết công việc');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -16,4 +16,9 @@ class BaiDangService
     public function fetchAll() {
         return $this->baiDangRepository->fetchAll();
     }
+
+    public function fetchById($maBaiDang)
+    {
+        return $this->baiDangRepository->fetchById($maBaiDang);
+    }
 }
