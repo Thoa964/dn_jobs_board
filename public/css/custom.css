@@ -28,3 +28,7 @@ ul.pagination {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;;
 }
+
+.bb-1 {
+    border-bottom: 1px solid #DDD6FE;
+}

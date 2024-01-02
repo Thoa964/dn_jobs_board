@@ -1,7 +1,7 @@
 <!--job offers-->
 <div class="job-offers pt-4">
     <h1>Job <span class="green">list</span></h1>
-    <a href="">All offers <img style="width: 20px; margin-left: 20px;" src="{{ asset('/img/icon/arrow-right-icon.svg') }}" alt=""></a>
+    <a href="">All offers ({{ $danhSachBaiDang->total() }})<img style="width: 20px; margin-left: 20px;" src="{{ asset('/img/icon/arrow-right-icon.svg') }}" alt=""></a>
     <div class="pt-5">
         <div class="row">
             @foreach($danhSachBaiDang as $baiDang)
