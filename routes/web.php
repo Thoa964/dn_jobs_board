@@ -35,6 +35,7 @@ Route::group(['prefix' => ''], function () {
 
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/', [BaiDangController::class, 'index'])->name('Danh sách công việc');
+    Route::get('/tim-kiem', [BaiDangController::class, 'search'])->name('Tìm kiếm');
     Route::get('/{ma_bai_dang}', [BaiDangController::class, 'show'])->name('Chi tiết công việc');
 });
 
