@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="" class="main-btn">See details</a>
+                        <a href="{{ route('Chi tiết công việc', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">See details</a>
                     </div>
                 @empty
                     <p>Không tìm thấy kết quả nào với từ khóa {{ $keyword }}</p>
