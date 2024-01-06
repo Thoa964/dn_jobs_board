@@ -14,7 +14,8 @@ class UserRepository extends BaseRepository
 
     public function getProfile(string $taiKhoan)
     {
-        return $this->model->where('tai_khoan', $taiKhoan)->first();
+        return $this->model->with(['hoSo', 'hoSo.kyNang', 'hoSo.bangCap'])
+            ->where('tai_khoan', $taiKhoan)->first();
     }
 
     public function updateAvatar($taiKhoan, $avatar)

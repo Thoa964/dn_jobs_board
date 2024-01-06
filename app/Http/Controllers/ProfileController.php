@@ -3,32 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\DataTransferObjects\UpdateProfileData;
+use App\Http\Requests\InsertBangCapRequest;
+use App\Http\Requests\InsertKyNangRequest;
+use App\Http\Requests\UpdateHoSoRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UploadAvatarRequest;
+use App\Services\HoSoService;
 use App\Services\PhuongService;
 use App\Services\QuanService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
     protected UserService $userService;
     protected QuanService $quanService;
     protected PhuongService $phuongService;
+    protected HoSoService $hoSoService;
 
     public function __construct(
         UserService $userService,
         QuanService $quanService,
-        PhuongService $phuongService
+        PhuongService $phuongService,
+        HoSoService $hoSoService
     ) {
         $this->userService = $userService;
         $this->quanService = $quanService;
         $this->phuongService = $phuongService;
+        $this->hoSoService = $hoSoService;
     }
 
     public function index()
     {
-        $profile = Auth::user();
+        $profile = $this->userService->getProfile(Auth::user()->tai_khoan);
         return view('profile.index', compact('profile'));
     }
 
@@ -51,5 +59,28 @@ class ProfileController extends Controller
     public function updateAvatar(UploadAvatarRequest $avatarRequest)
     {
         return $this->userService->updateAvatar(Auth::user()->tai_khoan, $avatarRequest->avatar);
+    }
+
+    public function updateHoSo(UpdateHoSoRequest $request) {
+        $data = $request->validated();
+        return $this->hoSoService->updateHoSo(Auth::user()->tai_khoan, $data);
+    }
+
+    public function insertBangCap(InsertBangCapRequest $request) {
+        $data = $request->validated();
+        return $this->hoSoService->insertBangCap(Auth::user()->tai_khoan, $data);
+    }
+
+    public function deleteBangCap($ma_bang_cap) {
+        return $this->hoSoService->deleteBangCap(Auth::user()->tai_khoan, $ma_bang_cap);
+    }
+
+    public function insertKyNang(InsertKyNangRequest $request) {
+        $data = $request->validated();
+        return $this->hoSoService->insertKyNang(Auth::user()->tai_khoan, $data);
+    }
+
+    public function deleteKyNang($ma_ky_nang) {
+        return $this->hoSoService->deleteKyNang(Auth::user()->tai_khoan, $ma_ky_nang);
     }
 }

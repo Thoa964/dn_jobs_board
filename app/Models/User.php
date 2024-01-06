@@ -6,6 +6,7 @@ use App\Enums\Common;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -90,5 +91,9 @@ class User extends Authenticatable
 
     public function danhSachBaiDang(): HasMany {
         return $this->hasMany(BaiDang::class, 'tai_khoan', 'tai_khoan');
+    }
+
+    public function hoSo(): HasOne {
+        return $this->hasOne(HoSo::class, 'tai_khoan', 'tai_khoan');
     }
 }
