@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HoSo extends Model
 {
@@ -19,7 +20,12 @@ class HoSo extends Model
         'bang_cap',
     ];
 
-    public function kyNang(): BelongsTo {
-        return $this->belongsTo(KyNang::class, 'ma_ky_nang', 'ma_ky_nang');
+    public function kyNang(): HasMany {
+        return $this->hasMany(KyNang::class, 'ma_ho_so', 'ma_ho_so');
+    }
+
+    public function bangCap(): HasMany
+    {
+        return $this->hasMany(BangCap::class, 'ma_ho_so', 'ma_ho_so');
     }
 }

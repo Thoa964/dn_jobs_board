@@ -42,9 +42,16 @@ Route::group(['prefix' => 'jobs'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [ProfileController::class, 'index'])->name('Thông tin cá nhân');
-        Route::get('/ho_so', [ProfileController::class, 'index'])->name('Hồ sơ');
         Route::get('/update', [ProfileController::class, 'update'])->name('Cập nhật thông tin cá nhân');
         Route::post('/update', [ProfileController::class, 'save'])->name('Lưu thông tin cá nhân');
         Route::post('/avatar', [ProfileController::class, 'updateAvatar'])->name('Cập nhật avatar');
+    });
+
+    Route::group(['prefix' => 'ho-so'], function () {
+       Route::post('/', [ProfileController::class, 'updateHoSo'])->name('Cập nhật hồ sơ');
+       Route::post('/bang-cap', [ProfileController::class, 'insertBangCap'])->name('Thêm mới bằng cấp');
+       Route::delete('/bang-cap/{ma_bang_cap}', [ProfileController::class, 'deleteBangCap'])->name('Xóa bằng cấp');
+       Route::post('/ky-nang', [ProfileController::class, 'insertKyNang'])->name('Thêm mới kỹ năng');
+       Route::delete('/ky-nang/{ma_ky_nang}', [ProfileController::class, 'deleteKyNang'])->name('Xóa kỹ năng');
     });
 });

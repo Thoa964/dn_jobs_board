@@ -120,5 +120,5 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/profile.js') }}"
+    <script src="{{ asset('js/update_profile.js') }}"
 @endsection
