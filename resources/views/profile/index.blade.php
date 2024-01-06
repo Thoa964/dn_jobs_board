@@ -90,13 +90,13 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h5 class="card-title mb-0">Bằng cấp</h5>
-                                        <i class="fas fa-add" data-bs-toggle="modal"
+                                        <i class="fa fa-plus" data-bs-toggle="modal"
                                            data-bs-target="#addCertificateModal" style="cursor: pointer;"></i>
                                     </div>
                                 </div>
                                 <div class="card-body" id="bangCapList">
                                     @foreach($profile->hoSo->bangCap ?? [] as $item)
-                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="d-flex justify-content-between align-items-center mb-2 item">
                                             <span>{{ $item->ten_bang_cap }}</span>
                                             <div class="d-flex align-items-center">
                                                 <span>{{ $item->ngay_cap_bang }}</span>
@@ -111,13 +111,13 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <h5 class="card-title mb-0">Kỹ năng</h5>
-                                        <i class="fas fa-add" data-bs-toggle="modal"
+                                        <i class="fa fa-plus" data-bs-toggle="modal"
                                            data-bs-target="#addSkillModal" style="cursor: pointer;"></i>
                                     </div>
                                 </div>
                                 <div class="card-body" id="kyNangList">
                                     @foreach($profile->hoSo->kyNang ?? [] as $item)
-                                        <div class="d-flex justify-content-between mb-2">
+                                        <div class="d-flex justify-content-between mb-2 item">
                                             <span>{{ $item->ten_ky_nang }}</span>
                                             @php($experience = ($item->so_nam_kinh_nghiem - (int) $item->so_nam_kinh_nghiem ) == 0 ? (int) $item->so_nam_kinh_nghiem : $item->so_nam_kinh_nghiem)
                                             <div class="d-flex align-items-center">
