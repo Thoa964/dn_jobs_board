@@ -16,6 +16,10 @@ class HoSoRepository extends BaseRepository
         return $this->model->where('tai_khoan', $tai_khoan)->update($data);
     }
 
+    public function insertHoSo($data) {
+        return $this->model->create($data);
+    }
+
     public function insertBangCap($tai_khoan, mixed $data)
     {
         return $this->model->where('tai_khoan', $tai_khoan)->first()->bangCap()->create($data);

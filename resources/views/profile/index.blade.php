@@ -85,49 +85,51 @@
                                 <button class="mt-3 btn btn-primary" id="cap_nhat_ho_so">Cập nhật hồ sơ</button>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Bằng cấp</h5>
-                                    <i class="fas fa-add" data-bs-toggle="modal"
-                                       data-bs-target="#addCertificateModal" style="cursor: pointer;"></i>
+                        @if($profile->hoSo)
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Bằng cấp</h5>
+                                        <i class="fas fa-add" data-bs-toggle="modal"
+                                           data-bs-target="#addCertificateModal" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="bangCapList">
+                                    @foreach($profile->hoSo->bangCap ?? [] as $item)
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span>{{ $item->ten_bang_cap }}</span>
+                                            <div class="d-flex align-items-center">
+                                                <span>{{ $item->ngay_cap_bang }}</span>
+                                                <i class="fas fa-trash text-danger ms-3 delete-bang-cap" style="cursor: pointer;"
+                                                   data-id="{{ $item->ma_bang_cap }}" data-title="{{ $item->ten_bang_cap }}"></i>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="card-body" id="bangCapList">
-                                @foreach($profile->hoSo->bangCap as $item)
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <span>{{ $item->ten_bang_cap }}</span>
-                                        <div class="d-flex align-items-center">
-                                            <span>{{ $item->ngay_cap_bang }}</span>
-                                            <i class="fas fa-trash text-danger ms-3 delete-bang-cap" style="cursor: pointer;"
-                                               data-id="{{ $item->ma_bang_cap }}" data-title="{{ $item->ten_bang_cap }}"></i>
-                                        </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Kỹ năng</h5>
+                                        <i class="fas fa-add" data-bs-toggle="modal"
+                                           data-bs-target="#addSkillModal" style="cursor: pointer;"></i>
                                     </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Kỹ năng</h5>
-                                    <i class="fas fa-add" data-bs-toggle="modal"
-                                       data-bs-target="#addSkillModal" style="cursor: pointer;"></i>
+                                </div>
+                                <div class="card-body" id="kyNangList">
+                                    @foreach($profile->hoSo->kyNang ?? [] as $item)
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>{{ $item->ten_ky_nang }}</span>
+                                            @php($experience = ($item->so_nam_kinh_nghiem - (int) $item->so_nam_kinh_nghiem ) == 0 ? (int) $item->so_nam_kinh_nghiem : $item->so_nam_kinh_nghiem)
+                                            <div class="d-flex align-items-center">
+                                                <span>{{ $experience }} Năm</span>
+                                                <i class="fas fa-trash text-danger ms-3 delete-ky-nang" style="cursor: pointer;"
+                                                   data-id="{{ $item->ma_ky_nang }}" data-title="{{ $item->ten_ky_nang }}"></i>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="card-body" id="kyNangList">
-                                @foreach($profile->hoSo->kyNang as $item)
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span>{{ $item->ten_ky_nang }}</span>
-                                        @php($experience = ($item->so_nam_kinh_nghiem - (int) $item->so_nam_kinh_nghiem ) == 0 ? (int) $item->so_nam_kinh_nghiem : $item->so_nam_kinh_nghiem)
-                                        <div class="d-flex align-items-center">
-                                            <span>{{ $experience }} Năm</span>
-                                            <i class="fas fa-trash text-danger ms-3 delete-ky-nang" style="cursor: pointer;"
-                                               data-id="{{ $item->ma_ky_nang }}" data-title="{{ $item->ten_ky_nang }}"></i>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                        @endif
                     </div>
                     <div class="tab-pane fade" id="password" role="tabpanel">
                         <div class="card">
