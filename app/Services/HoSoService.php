@@ -3,18 +3,30 @@
 namespace App\Services;
 
 use App\Repositories\HoSoRepository;
+use App\Repositories\UserRepository;
 
 class HoSoService
 {
     protected HoSoRepository $hoSoRepository;
+    protected UserRepository $userRepository;
 
-    public function __construct(HoSoRepository $hoSoRepository)
-    {
+    public function __construct(
+        HoSoRepository $hoSoRepository,
+        UserRepository $userRepository
+    ) {
         $this->hoSoRepository = $hoSoRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function updateHoSo($tai_khoan, mixed $data)
     {
+        $hoSo = $this->userRepository->getProfile($tai_khoan)->hoSo;
+
+        if (!$hoSo) {
+            $data['tai_khoan'] = $tai_khoan;
+            return $this->hoSoRepository->insertHoSo($data);
+        }
+
         return $this->hoSoRepository->updateHoSo($tai_khoan, $data);
     }
 
