@@ -11,10 +11,7 @@
             <div class="col-md-7">
                 <span>{{ $baiDang->author->ten_cong_ty }}</span>
                 <h3>{{ $baiDang->tieu_de }}</h3>
-                <p>Hạn nộp hồ sơ: <strong>{{ $baiDang->thoi_gian_ket_thuc }}</strong></p>
-            </div>
-            <div class="col-md-3 d-flex justify-content-end align-items-end flex-wrap">
-                <strong>Ngày đăng bài: {{ $baiDang->created_at ?? $baiDang->thoi_gian_bat_dau }}</strong>
+                <span>Hạn nộp hồ sơ: <strong>{{ $baiDang->thoi_gian_ket_thuc }}</strong></span>
             </div>
         </div>
     </div>
@@ -31,9 +28,6 @@
                         </div>
                         <div class="col-4">
                             <p>Cấp bậc: {{ $baiDang->chuc_vu }}</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Cấp bậc:{{ $baiDang->chuc_vu }}</p>
                         </div>
                     </div>
                     <div class="d-flex border-1 bb-1 mb-4">

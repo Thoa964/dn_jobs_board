@@ -1,3 +1,4 @@
+@php($currentRoute = Route::currentRouteName())
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +8,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', '') }} - {{ ucfirst(Route::currentRouteName()) }}</title>
+    <title>{{ config('app.name', '') }} - {{ ucfirst($currentRoute) }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
@@ -21,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    {{-- CKEditor --}}
+    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>
 @include('layouts._header')
@@ -29,7 +32,7 @@
     @include('components.alert')
     @yield('intro')
     <!--Search by category-->
-    <div class="container">
+    <div class="container @if($currentRoute != "Trang chủ") mt-140 @endif">
         @yield('content')
     </div>
 </main>

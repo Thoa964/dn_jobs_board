@@ -1,11 +1,7 @@
 @php
     $header = [
-        'home' => route('Trang chủ'),
-        'about' => '',
-        'contact' => '',
+        'Trang chủ' => route('Trang chủ'),
     ];
-
-    $currentRoute = Request::route()->getName();
 @endphp
 
 <nav class="navbar navbar-expand-xl fixed-top">
@@ -18,9 +14,17 @@
             <ul class="navbar-nav">
                 @foreach($header as $item => $link)
                     <li class="nav-card-item">
-                        <a class="nav-link {{ $currentRoute == $item ? 'active' : '' }}" href="{{ $link }}">{{ __("_header.$item") }}</a>
+                        <a class="nav-link {{ $currentRoute == $item ? 'active' : '' }}" href="{{ $link }}">{{ $item }}</a>
                     </li>
                 @endforeach
+                @if(\Auth::check() && Auth::user()->isDoanhNghiep())
+                    <li class="nav-card-item">
+                        <a class="nav-link {{ $currentRoute == 'Đăng bài tuyển dụng' ? 'active' : '' }}"
+                           href="{{ route('Đăng bài tuyển dụng') }}">
+                            {{ "Đăng bài tuyển dụng" }}
+                        </a>
+                    </li>
+                @endif
             </ul>
             @guest()
                 <ul class="right navbar-nav ms-auto">

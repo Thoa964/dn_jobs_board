@@ -27,7 +27,8 @@ class BaiDang extends Model
         'so_luong',
         'yeu_cau_ung_vien',
         'quyen_loi',
-        'cach_thuc_ung_tuyen'
+        'cach_thuc_ung_tuyen',
+        'dia_diem_lam_viec'
     ];
 
     public function author(): BelongsTo {
