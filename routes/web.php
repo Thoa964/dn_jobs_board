@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NganhNgheController;
 use App\Http\Controllers\PhuongController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,12 @@ Route::group(['prefix' => ''], function () {
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/', [BaiDangController::class, 'index'])->name('Danh sách công việc');
     Route::get('/tim-kiem', [BaiDangController::class, 'search'])->name('Tìm kiếm');
+
+    Route::group(['middleware' => 'doanh_nghiep'], function () {
+        Route::get('/create', [BaiDangController::class, 'create'])->name('Đăng bài tuyển dụng');
+        Route::post('/create', [BaiDangController::class, 'store'])->name('Lưu bài đăng');
+    });
+
     Route::get('/{ma_bai_dang}', [BaiDangController::class, 'show'])->name('Chi tiết công việc');
 });
 
@@ -53,5 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
        Route::delete('/bang-cap/{ma_bang_cap}', [ProfileController::class, 'deleteBangCap'])->name('Xóa bằng cấp');
        Route::post('/ky-nang', [ProfileController::class, 'insertKyNang'])->name('Thêm mới kỹ năng');
        Route::delete('/ky-nang/{ma_ky_nang}', [ProfileController::class, 'deleteKyNang'])->name('Xóa kỹ năng');
+    });
+
+    Route::group(['prefix' => 'nganh-nghe'], function () {
+        Route::post('/', [NganhNgheController::class, 'store'])->name('Tạo mới ngành nghề');
     });
 });

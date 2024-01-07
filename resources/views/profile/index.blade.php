@@ -2,8 +2,12 @@
 
 @php
     $diaChi = 'Chưa cập nhật';
-    if ($profile->ten_phuong && $profile->dia_chi) {
-        $diaChi = sprintf("%s - %s", $profile->ten_phuong, $profile->dia_chi);
+    if ($profile->ten_phuong && $profile->dia_chi && $profile->phuong) {
+        $diaChi = sprintf("%s, Phường %s, Quận %s, TP Đà Nẵng",
+                                            $profile->dia_chi,
+                                            $profile->phuong->ten_phuong,
+                                            $profile->phuong->quan->ten_quan
+                                        );
     }
 @endphp
 

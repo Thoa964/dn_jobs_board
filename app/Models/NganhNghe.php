@@ -10,4 +10,9 @@ class NganhNghe extends Model
     use HasFactory;
 
     protected $table = 'tbl_nganh_nghe';
+
+    protected $fillable = [
+        'ten_nganh_nghe',
+        'is_crawl_data',
+    ];
 }

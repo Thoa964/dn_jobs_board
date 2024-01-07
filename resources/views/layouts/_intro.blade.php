@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <div>
-                            <input class="search main-btn" type="submit" value="Search">
+                            <input class="search main-btn" type="submit" value="Tìm kiếm">
                         </div>
                     </div>
                 </form>

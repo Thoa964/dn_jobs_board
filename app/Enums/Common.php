@@ -11,4 +11,5 @@ final class Common extends Enum
     const DEFAULT_ITEMS_PER_PAGE = 10;
     const MALE = 'Nam';
     const FEMALE = 'Nữ';
+    const DOANH_NGHIEP = 3;
 }

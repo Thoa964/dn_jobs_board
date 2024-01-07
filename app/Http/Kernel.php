@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckStatus;
+use App\Http\Middleware\DoanhNghiep;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'phe_duyet' => CheckStatus::class,
+        'doanh_nghiep' => DoanhNghiep::class,
     ];
 }

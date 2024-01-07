@@ -96,4 +96,8 @@ class User extends Authenticatable
     public function hoSo(): HasOne {
         return $this->hasOne(HoSo::class, 'tai_khoan', 'tai_khoan');
     }
+
+    public function isDoanhNghiep(): bool {
+        return $this->ma_quyen == Common::DOANH_NGHIEP;
+    }
 }

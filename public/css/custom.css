@@ -1,3 +1,7 @@
+body {
+  font-family: 'Helvetica Neue', sans-serif !important;
+}
+
 main {
     margin-top: -20px;
 }
@@ -67,4 +71,12 @@ ul.pagination {
 .list-group > .active {
   background-color: var(--primary) !important;
   border-color: var(--primary) !important;
+}
+
+.navbar li .active {
+  color: var(--primary) !important;
+}
+
+.mt-140 {
+  margin-top: 140px;
 }
