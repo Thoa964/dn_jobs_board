@@ -394,17 +394,17 @@ ul.list-in-text li:before {
 
 .job-offers .offert-wrapper .offert .offert-description .company-logo {
   text-align: center;
-  min-width: 50px;
-  max-width: 50px;
-  height: 50px;
-  padding: 10px;
+  min-width: 100px;
+  max-width: 100px;
+  height: 100px;
+  padding: 5px;
   border: 1px solid #e7e7e7;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
 .job-offers .offert-wrapper .offert .offert-description .company-logo img {
-  height: 80%;
+  height: 100%;
   width: auto;
 }
 
@@ -1030,7 +1030,7 @@ footer .footer-wrap .newsletter #subscribe button {
     min-width: 50px;
     max-width: 50px;
     height: 50px;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 0px;
   }
   .update-news {
@@ -1137,7 +1137,7 @@ footer .footer-wrap .newsletter #subscribe button {
     min-width: 100px;
     max-width: 100px;
     height: 100px;
-    padding: 20px;
+    padding: 5px;
     margin-bottom: 0px;
   }
   footer .footer-wrap .about {

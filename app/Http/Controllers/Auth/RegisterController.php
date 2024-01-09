@@ -128,9 +128,12 @@ class RegisterController extends Controller
     private function crawlDataProcessing(string $maSoThue, string $pathTenCongTy): array {
         $path = strtolower("$maSoThue-$pathTenCongTy");
         $response = $this->client->request("GET", "https://masothue.com/$path");
-        $tenNguoiDaiDien = $response->filter('td > span[itemprop="name"]')->text();
-        $soDienThoai = $response->filter('td[itemprop="telephone"]')->text();
-        $tenCongTy = $response->filter('h1[class="h1"]')->text();
+        $nameNode = $response->filter('td > span[itemprop="name"]');
+        $phoneNode = $response->filter('td[itemprop="telephone"]');
+        $companyNameNode = $response->filter('h1[class="h1"]');
+        $tenNguoiDaiDien = $nameNode->count() > 0 ? $nameNode->text() : '';
+        $soDienThoai = $phoneNode->count() > 0 ? $phoneNode->text() : '';
+        $tenCongTy = $companyNameNode->count() > 0 ? $companyNameNode->text() : '';
 
         return [
             'ten_nguoi_dai_dien' => strtolower($tenNguoiDaiDien),
@@ -172,7 +175,7 @@ class RegisterController extends Controller
     }
 
     private function vn_to_str($str) {
- 
+
         $unicode = array(
             'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
             'd'=>'đ',
@@ -189,13 +192,13 @@ class RegisterController extends Controller
             'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
             'Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
         );
-         
+
         foreach($unicode as $nonUnicode=>$uni){
             $str = preg_replace("/($uni)/i", $nonUnicode, $str);
         }
 
         $str = str_replace(' ','-',$str);
-         
+
         return $str;
     }
 }
