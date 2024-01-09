@@ -6,6 +6,7 @@ use App\Enums\WorkType;
 use App\Http\Requests\InsertBaiDangRequest;
 use App\Models\Quan;
 use App\Services\BaiDangService;
+use App\Services\DangKyUngTuyenService;
 use App\Services\NganhNgheService;
 use App\Services\QuanService;
 use Illuminate\Http\Request;
@@ -16,15 +17,18 @@ class BaiDangController extends Controller
     private BaiDangService $baiDangService;
     private QuanService $quanService;
     private NganhNgheService $nganhNgheService;
+    private DangKyUngTuyenService $dangKyUngTuyenService;
 
     public function __construct(
         BaiDangService $baiDangService,
         QuanService $quanService,
-        NganhNgheService $nganhNgheService
+        NganhNgheService $nganhNgheService,
+        DangKyUngTuyenService $dangKyUngTuyenService
     ) {
         $this->baiDangService = $baiDangService;
         $this->quanService = $quanService;
         $this->nganhNgheService = $nganhNgheService;
+        $this->dangKyUngTuyenService = $dangKyUngTuyenService;
     }
 
     public function index()
@@ -44,7 +48,9 @@ class BaiDangController extends Controller
             return redirect()->back()->with('error', 'Không tìm thấy bài đăng');
         }
 
-        return view('jobs.show', compact('baiDang'));
+        $dangUngTuyen = $this->dangKyUngTuyenService->getSoLuongUngTuyen($maBaiDang);
+
+        return view('jobs.show', compact('baiDang', 'dangUngTuyen'));
     }
 
     public function search(Request $request) {

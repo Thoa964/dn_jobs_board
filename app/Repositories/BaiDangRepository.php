@@ -57,4 +57,12 @@ class BaiDangRepository extends BaseRepository
 
         return $result->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
     }
+
+    public function fetchMyPost($taiKhoan)
+    {
+        return $this->model->with(['author', 'nganhNghe'])
+            ->where('tai_khoan', $taiKhoan)
+            ->orderBy('created_at', 'desc')
+            ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
+    }
 }

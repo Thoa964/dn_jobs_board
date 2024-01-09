@@ -27,6 +27,9 @@ ClassicEditor.defaultConfig = {
 };
 
 ClassicEditor.create(document.querySelector('#inputContent'));
+ClassicEditor.create(document.querySelector('#inputRequirement'));
+ClassicEditor.create(document.querySelector('#inputBenefit'));
+ClassicEditor.create(document.querySelector('#inputCachThucUngTuyen'));
 
 function setMinDate() {
     const inputStartTime = document.getElementById('inputStartTime');

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @php($user = Auth::user())
     <div class="container">
         <div class="row">
             <div class="col-md-2">
@@ -13,6 +14,13 @@
                 <h3>{{ $baiDang->tieu_de }}</h3>
                 <span>Hạn nộp hồ sơ: <strong>{{ $baiDang->thoi_gian_ket_thuc }}</strong></span>
             </div>
+            @if($user->ma_quyen == 2 && $user->hoSo)
+                <div class="col-md-3">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('Ứng tuyển', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Ứng tuyển</a>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
     <br/>
@@ -29,13 +37,16 @@
                         <div class="col-4">
                             <p>Cấp bậc: {{ $baiDang->chuc_vu }}</p>
                         </div>
+                        <div class="col-4">
+                            <p>Hình thức làm việc: {{ $baiDang->hinh_thuc_lam_viec }}</p>
+                        </div>
                     </div>
                     <div class="d-flex border-1 bb-1 mb-4">
                         <div class="col-4">
                             <p>Số lượng tuyển: {{ $baiDang->so_luong }}</p>
                         </div>
                         <div class="col-4">
-                            <p>Hình thức làm việc: {{ $baiDang->hinh_thuc_lam_viec }}</p>
+                            <p>Đang ứng tuyển: {{ $dangUngTuyen }}</p>
                         </div>
                         <div class="col-4">
                             <p>Yêu cầu kinh nghiệm: {{ $baiDang->kinh_nghiem }}</p>
@@ -53,6 +64,10 @@
                 {!! $baiDang->yeu_cau_ung_vien !!}
                 <h4>Quyền lợi</h4>
                 {!! $baiDang->quyen_loi !!}
+                @if($baiDang->cach_thuc_ung_tuyen)
+                    <h4>Cách thức ứng tuyển</h4>
+                    {!! $baiDang->cach_thuc_ung_tuyen !!}
+                @endif
                 <h4>Địa điểm làm việc</h4>
                 {!! $baiDang->dia_diem_lam_viec !!}
             </div>
