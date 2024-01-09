@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\Common;
 use App\Repositories\UserRepository;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,5 +43,17 @@ class UserService
 
     public function update(string $taiKhoan, array $data) {
         return $this->userRepository->updateProfile($taiKhoan, $data);
+    }
+
+    public function changePassword($user, mixed $data)
+    {
+        // handle check old password is correct
+        if (!Hash::check($data['password'], $user->mat_khau)) {
+            return false;
+        }
+
+        $this->userRepository->updatePassword($user, bcrypt($data['new_password']));
+
+        return true;
     }
 }

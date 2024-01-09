@@ -14,7 +14,7 @@ class UserRepository extends BaseRepository
 
     public function getProfile(string $taiKhoan)
     {
-        return $this->model->with(['hoSo', 'hoSo.kyNang', 'hoSo.bangCap'])
+        return $this->model->with(['hoSo', 'hoSo.kyNang', 'hoSo.bangCap', 'danhSachBaiDang'])
             ->where('tai_khoan', $taiKhoan)->first();
     }
 
@@ -52,5 +52,19 @@ class UserRepository extends BaseRepository
         }
 
         return null;
+    }
+
+    public function updatePassword($user, mixed $new_password)
+    {
+        $user->update([
+            'mat_khau' => $new_password
+        ]);
+    }
+
+    public function getMaHoSoByTaiKhoan($tai_khoan)
+    {
+        return $this->model->with('hoSo')
+            ->where('tai_khoan', $tai_khoan)
+            ->first()->hoSo->ma_ho_so;
     }
 }

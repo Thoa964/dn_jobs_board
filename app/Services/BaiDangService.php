@@ -64,4 +64,9 @@ class BaiDangService
 
         return $this->baiDangRepository->create($data);
     }
+
+    public function fetchMyPost($taiKhoan)
+    {
+        return $this->baiDangRepository->fetchMyPost($taiKhoan);
+    }
 }

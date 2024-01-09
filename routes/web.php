@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BaiDangController;
+use App\Http\Controllers\BaiDangCuaToiController;
+use App\Http\Controllers\DangKyUngTuyenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NganhNgheController;
 use App\Http\Controllers\PhuongController;
@@ -43,10 +46,18 @@ Route::group(['prefix' => 'jobs'], function () {
         Route::post('/create', [BaiDangController::class, 'store'])->name('Lưu bài đăng');
     });
 
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/{ma_bai_dang}/ung-tuyen', [DangKyUngTuyenController::class, 'ungTuyen'])->name('Ứng tuyển');
+    });
+
     Route::get('/{ma_bai_dang}', [BaiDangController::class, 'show'])->name('Chi tiết công việc');
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'me'], function () {
+        Route::get('/bai-dang', [BaiDangCuaToiController::class, 'index'])->name('Bài đăng của tôi');
+    });
+
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [ProfileController::class, 'index'])->name('Thông tin cá nhân');
         Route::get('/update', [ProfileController::class, 'update'])->name('Cập nhật thông tin cá nhân');
@@ -64,5 +75,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'nganh-nghe'], function () {
         Route::post('/', [NganhNgheController::class, 'store'])->name('Tạo mới ngành nghề');
+    });
+
+    Route::group(['prefix' => 'password'], function () {
+        Route::post('/change', [ChangePasswordController::class, 'changePassword'])->name('Đổi mật khẩu');
     });
 });

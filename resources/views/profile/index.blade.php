@@ -20,11 +20,11 @@
                         <h5 class="card-title mb-0">{{ \Request::route()->getName() }}</h5>
                     </div>
                     <div class="list-group list-group-flush" role="tablist">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account"
+                        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account"
                            role="tab">
                             Thông tin cá nhân
                         </a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#password"
+                        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password"
                            role="tab">
                             Mật khẩu
                         </a>
@@ -138,22 +138,24 @@
                     <div class="tab-pane fade" id="password" role="tabpanel">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Password</h5>
-                                <form>
+                                <h5 class="card-title">Cập nhật mật khẩu</h5>
+                                <form action="{{ route('Đổi mật khẩu') }}" method="POST" class="d-flex flex-column gap-3">
+                                    @csrf
                                     <div class="form-group">
-                                        <label for="inputPasswordCurrent">Current password</label>
-                                        <input type="password" class="form-control" id="inputPasswordCurrent">
-                                        <small><a href="#">Forgot your password?</a></small>
+                                        <label for="inputPasswordCurrent">Mật khẩu hiện tại</label>
+                                        <input type="password" class="form-control" id="inputPasswordCurrent" name="password">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPasswordNew">New password</label>
-                                        <input type="password" class="form-control" id="inputPasswordNew">
+                                        <label for="inputPasswordNew">Mật khẩu mới</label>
+                                        <input type="password" class="form-control" id="inputPasswordNew" name="new_password">
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPasswordNew2">Verify password</label>
-                                        <input type="password" class="form-control" id="inputPasswordNew2">
+                                        <label for="inputPasswordNew2">Nhập lại mật khẩu</label>
+                                        <input type="password" class="form-control" id="inputPasswordNew2" name="new_password_confirmation">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <div style="width: 60px">
+                                        <button type="submit" class="btn btn-primary">Lưu</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
