@@ -51,6 +51,7 @@ Route::group(['prefix' => 'jobs'], function () {
     });
 
     Route::get('/{ma_bai_dang}', [BaiDangController::class, 'show'])->name('Chi tiết công việc');
+    Route::get('/{ma_bai_dang}/ung-vien', [BaiDangController::class, 'showListUngVien'])->name('Danh sách ứng viên');
 });
 
 Route::group(['middleware' => 'auth'], function () {
