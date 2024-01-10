@@ -44,6 +44,11 @@
                         <li>
                             <a href="{{ route('Thông tin cá nhân') }}" class="dropdown-item">{{ __("_header.profile") }}</a>
                         </li>
+                        @if(\Auth::check() && Auth::user()->isDoanhNghiep())
+                            <li>
+                                <a href="{{ route('Bài đăng của tôi') }}" class="dropdown-item">{{ "Bài đăng của tôi" }}</a>
+                            </li>
+                        @endif
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf

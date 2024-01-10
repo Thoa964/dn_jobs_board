@@ -14,10 +14,17 @@
                 <h3>{{ $baiDang->tieu_de }}</h3>
                 <span>Hạn nộp hồ sơ: <strong>{{ $baiDang->thoi_gian_ket_thuc }}</strong></span>
             </div>
-            @if($user->ma_quyen == 2 && $user->hoSo)
+            @if($user && $user->ma_quyen == 2 && $user->hoSo)
                 <div class="col-md-3">
                     <div class="d-flex justify-content-end">
                         <a href="{{ route('Ứng tuyển', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Ứng tuyển</a>
+                    </div>
+                </div>
+            @endif
+            @if($user && $user->ma_quyen == 3)
+                <div class="col-md-3">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('Danh sách ứng viên', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Danh sách ứng viên</a>
                     </div>
                 </div>
             @endif
