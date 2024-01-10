@@ -8,6 +8,7 @@ use App\Repositories\PhuongRepository;
 use BenSampo\Enum\Exceptions\InvalidEnumKeyException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class BaiDangService
 {
@@ -68,5 +69,22 @@ class BaiDangService
     public function fetchMyPost($taiKhoan)
     {
         return $this->baiDangRepository->fetchMyPost($taiKhoan);
+    }
+
+    /**
+     * @throws ValidatorException
+     */
+    public function update($data, $maBaiDang)
+    {
+        $phuong = $this->phuongRepository->getById($data['ma_phuong']);
+
+        $data['job_cao_du_lieu'] = false;
+        $data['hinh_thuc_lam_viec'] = WorkType::fromKey($data['hinh_thuc_lam_viec']);
+        $data['dia_diem_lam_viec'] = sprintf("%s, Phường %s, Quận %s, TP Đà Nẵng",
+            $data['dia_chi'],
+            $phuong->ten_phuong,
+            $phuong->quan->ten_quan
+        );
+        return $this->baiDangRepository->update($data, $maBaiDang);
     }
 }

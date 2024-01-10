@@ -65,4 +65,9 @@ class BaiDangRepository extends BaseRepository
             ->orderBy('created_at', 'desc')
             ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
     }
+
+    public function update($data, $maBaiDang) {
+        return $this->model->where('ma_bai_dang', $maBaiDang)
+            ->update($data);
+    }
 }

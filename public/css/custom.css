@@ -2,13 +2,9 @@ main {
     margin-top: -20px;
 }
 
-.nav-link {
-    color: #92d35e;
-}
-
 .nav-link:hover {
-    color: #92d35e;
-    font-weight: bold;
+    color: #92d35e !important;
+    /*font-weight: bold;*/
 }
 
 .offert-wrapper {

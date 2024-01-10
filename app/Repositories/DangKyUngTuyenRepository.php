@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\Common;
 use App\Models\DangKyUngTuyen;
 use App\Models\NganhNghe;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -39,5 +40,22 @@ class DangKyUngTuyenRepository extends BaseRepository
         return $this->model
             ->where('ma_bai_dang', $maBaiDang)
             ->count();
+    }
+
+    public function getDanhSachUngVien($maBaiDang)
+    {
+        return $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
+    }
+
+    public function updateTrangThaiDangKy($maBaiDang, string $maHoSo, string $trangThai)
+    {
+        $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->where('ma_ho_so', $maHoSo)
+            ->update([
+                'trang_thai' => $trangThai
+            ]);
     }
 }

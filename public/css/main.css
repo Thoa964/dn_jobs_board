@@ -26,7 +26,7 @@ a {
 
 a:hover {
   color: #4b4b4b;
-  font-weight: 900;
+  /*font-weight: 900;*/
 }
 
 input, textarea {
@@ -84,7 +84,7 @@ h1 {
 }
 
 .navbar li .nav-link:hover, .navbar li .active {
-  font-weight: 900;
+  /*font-weight: 900;*/
 }
 
 .navbar .navbar-toggler:focus, .navbar .navbar-toggler:hover {

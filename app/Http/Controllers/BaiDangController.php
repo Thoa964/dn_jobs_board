@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\WorkType;
 use App\Http\Requests\InsertBaiDangRequest;
+use App\Http\Requests\UpdateBaiDangRequest;
+use App\Http\Requests\UpdateTrangThaiDangKyRequest;
 use App\Models\Quan;
 use App\Services\BaiDangService;
 use App\Services\DangKyUngTuyenService;
@@ -76,5 +78,34 @@ class BaiDangController extends Controller
         $data = $request->validated();
         $this->baiDangService->store($data, Auth::user()->tai_khoan);
         return redirect()->back()->with('success', 'Đăng bài thành công');
+    }
+
+    public function showListUngVien($maBaiDang) {
+        $danhSachUngVien = $this->dangKyUngTuyenService->getDanhSachUngVien($maBaiDang);
+        $baiDang = $this->baiDangService->fetchById($maBaiDang);
+        return view('jobs.ung-vien', compact('danhSachUngVien', 'baiDang'));
+    }
+
+    public function updateTrangThaiDangKy($maBaiDang, UpdateTrangThaiDangKyRequest $request) {
+        $data = $request->validated();
+        $this->dangKyUngTuyenService->updateTrangThaiDangKy($maBaiDang, $data);
+        return redirect()->back()->with('success', 'Cập nhật trạng thái đăng ký thành công');
+    }
+
+    public function edit($maBaiDang)
+    {
+        $baiDang = $this->baiDangService->fetchById($maBaiDang);
+        $quan = $this->quanService->getQuan();
+        $workType = WorkType::asArray();
+        $nganhNghe = $this->nganhNgheService->fetchAll();
+
+        return view('jobs.edit', compact('baiDang', 'quan', 'workType', 'nganhNghe'));
+    }
+
+    public function update(UpdateBaiDangRequest $request, $maBaiDang)
+    {
+        $data = $request->validated();
+        $this->baiDangService->update($data, $maBaiDang);
+        return redirect()->back()->with('success', 'Cập nhật bài đăng thành công');
     }
 }

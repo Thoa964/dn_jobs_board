@@ -38,4 +38,8 @@ class BaiDang extends Model
     public function nganhNghe(): BelongsTo {
         return $this->belongsTo(NganhNghe::class, 'ma_nganh_nghe', 'ma_nganh_nghe');
     }
+
+    public function phuong(): BelongsTo {
+        return $this->belongsTo(Phuong::class, 'ma_phuong', 'ma_phuong');
+    }
 }

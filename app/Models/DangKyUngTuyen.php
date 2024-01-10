@@ -22,4 +22,8 @@ class DangKyUngTuyen extends Model
     public function hoSo(): BelongsTo {
         return $this->belongsTo(HoSo::class, 'ma_ho_so', 'ma_ho_so');
     }
+
+    public function baiDang(): BelongsTo {
+        return $this->belongsTo(BaiDang::class, 'ma_bai_dang', 'ma_bai_dang');
+    }
 }

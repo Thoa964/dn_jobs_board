@@ -41,11 +41,32 @@ class DangKyUngTuyenService
             return false;
         }
 
+        if($baiDang->thoi_gian_ket_thuc < now()) {
+            session()->flash('error', 'Đã hết hạn đăng ký');
+            return false;
+        }
+
         $this->dangKyUngTuyenRepository->ungTuyen($maBaiDang, $maHoSo);
         return true;
     }
 
     public function getSoLuongUngTuyen($maBaiDang) {
         return $this->dangKyUngTuyenRepository->getSoLuongUngTuyen($maBaiDang);
+    }
+
+    public function getDanhSachUngVien($maBaiDang)
+    {
+        return $this->dangKyUngTuyenRepository->getDanhSachUngVien($maBaiDang);
+    }
+
+    public function updateTrangThaiDangKy($maBaiDang, $data)
+    {
+        if($data['trang_thai']) {
+            $trangThai = 'Đã duyệt';
+        } else {
+            $trangThai = 'Đã từ chối';
+        }
+
+        $this->dangKyUngTuyenRepository->updateTrangThaiDangKy($maBaiDang, $data['ma_ho_so'], $trangThai);
     }
 }

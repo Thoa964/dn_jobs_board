@@ -28,4 +28,9 @@ class HoSo extends Model
     {
         return $this->hasMany(BangCap::class, 'ma_ho_so', 'ma_ho_so');
     }
+
+    public function taiKhoan(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'tai_khoan', 'tai_khoan');
+    }
 }

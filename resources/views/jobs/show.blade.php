@@ -23,8 +23,11 @@
             @endif
             @if($user && $user->ma_quyen == 3 && $baiDang->author == $user)
                 <div class="col-md-3">
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex flex-column gap-3 justify-content-end">
                         <a href="{{ route('Danh sách ứng viên', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Danh sách ứng viên</a>
+                        @if($dangUngTuyen <= 0)
+                            <a href="{{ route('Sửa bài', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Sửa bài</a>
+                        @endif
                     </div>
                 </div>
             @endif
