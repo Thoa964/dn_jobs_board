@@ -42,29 +42,29 @@
                 <div class="px-4 pt-3 pb-1 mb-4" style="background-color: #F5F3FF">
                     <div class="d-flex border-1 bb-1 mb-4">
                         <div class="col-4">
-                            <p>Ngày đăng: {{ $baiDang->thoi_gian_bat_dau }}</p>
+                            <p><strong>Ngày đăng:</strong> {{ $baiDang->thoi_gian_bat_dau }}</p>
                         </div>
                         <div class="col-4">
-                            <p>Cấp bậc: {{ $baiDang->chuc_vu }}</p>
+                            <p><strong>Cấp bậc:</strong> {{ $baiDang->chuc_vu }}</p>
                         </div>
                         <div class="col-4">
-                            <p>Hình thức làm việc: {{ $baiDang->hinh_thuc_lam_viec }}</p>
+                            <p><strong>Hình thức làm việc:</strong> {{ $baiDang->hinh_thuc_lam_viec }}</p>
                         </div>
                     </div>
                     <div class="d-flex border-1 bb-1 mb-4">
                         <div class="col-4">
-                            <p>Số lượng tuyển: {{ $baiDang->so_luong }}</p>
+                            <p><strong>Số lượng tuyển:</strong> {{ $baiDang->so_luong }}</p>
                         </div>
                         <div class="col-4">
-                            <p>Đang ứng tuyển: {{ $dangUngTuyen }}</p>
+                            <p><strong>Đang ứng tuyển:</strong> {{ $dangUngTuyen }}</p>
                         </div>
                         <div class="col-4">
-                            <p>Yêu cầu kinh nghiệm: {{ $baiDang->kinh_nghiem }}</p>
+                            <p><strong>Yêu cầu kinh nghiệm:</strong> {{ $baiDang->kinh_nghiem }}</p>
                         </div>
                     </div>
                     <div class="d-flex border-1 bb-1 mb-4">
                         <div class="col-12">
-                            <p>Ngành nghề: <a href="#">{{ $baiDang->nganhNghe->ten_nganh_nghe }}</a></p>
+                            <p><strong>Ngành nghề:</strong> <a href="#">{{ $baiDang->nganhNghe->ten_nganh_nghe }}</a></p>
                         </div>
                     </div>
                 </div>

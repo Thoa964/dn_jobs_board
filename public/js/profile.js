@@ -1,10 +1,13 @@
-$(document).ready(function (){
+$(document).ready(async function () {
     const btnCapNhatHoSo = $('#cap_nhat_ho_so')
     const addCertificateForm = $('#addCertificateForm')
     const addSkillForm = $('#addSkillForm')
+    const addProjectForm = $('#addProjectForm')
     const kyNangList = $('#kyNangList')
     const bangCapList = $('#bangCapList')
+    const projectList = $('#projectList')
     const modal = $('.modal')
+    const editor = await ClassicEditor.create(document.querySelector('#projectDescription'))
 
     modal.on('shown.bs.modal', function () {
         modal.find('button[type="submit"]').prop('disabled', false)
@@ -55,7 +58,7 @@ $(document).ready(function (){
                         <div class="d-flex align-items-center">
                             <span>${data.ngay_cap_bang}</span>
                             <i class="fas fa-trash text-danger ms-3 delete-bang-cap" style="cursor: pointer;"
-                               data-id="${data.id}"></i>
+                               data-id="${data.id}" data-title="${data.ten_bang_cap}"></i>
                         </div>
                     </div>
                 `
@@ -86,7 +89,7 @@ $(document).ready(function (){
                         <div class="d-flex align-items-center">
                             <span>${data.so_nam_kinh_nghiem} Năm</span>
                             <i class="fas fa-trash text-danger ms-3 delete-ky-nang" style="cursor: pointer;"
-                               data-id="${data.id}"></i>
+                               data-id="${data.id}" data-title="${data.ten_ky_nang}"></i>
                         </div>
                     </div>
                 `
@@ -102,12 +105,40 @@ $(document).ready(function (){
         })
     })
 
+    addProjectForm.submit(function (e) {
+        e.preventDefault();
+        $('#projectDescription').val(editor.getData())
+
+        const data = $(this).serialize();
+
+        $.ajax({
+            url: '/ho-so/du-an',
+            type: 'POST',
+            data: data,
+            success: function (data) {
+                console.log(data)
+                let html = `
+                    <div class="d-flex justify-content-between mb-2 item">
+                        <a href="/du-an/${data.id}">${data.ten_du_an}</a>
+                        <i class="fas fa-trash text-danger ms-3 delete-du-an" style="cursor: pointer;"
+                           data-id="${data.id}" data-title="${data.ten_du_an}"></i>
+                    </div>
+                `
+                projectList.append(html)
+                $('#addProjectModal').modal('hide');
+                let $btnSubmit = $(this).find('button[type="submit"]');
+                $btnSubmit.prop('disabled', true);
+                showToast("Thêm dự án thành công", "linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61))");
+            },
+        })
+    })
+
     function deleteSkill(e) {
         const target = $(e.target)
         const id = target.data('id');
         const title = target.data('title');
 
-        if(confirm(`Bạn có chắc bạn muốn xóa bằng "${title}"?`)) {
+        if (confirm(`Bạn có chắc bạn muốn xóa bằng "${title}"?`)) {
             $.ajax({
                 url: `/ho-so/ky-nang/${id}`,
                 type: 'DELETE',
@@ -151,6 +182,32 @@ $(document).ready(function (){
         }
     }
 
+    function deleteProject(e) {
+        const target = $(e.target)
+        const id = target.data('id');
+        const title = target.data('title');
+
+        if (confirm(`Bạn có chắc bạn muốn xóa dự án "${title}"?`)) {
+            $.ajax({
+                url: `/ho-so/du-an/${id}`,
+                type: 'DELETE',
+                data: {
+                    '_token': $('meta[name="csrf-token"]').attr('content'),
+                    'type': 'delete'
+                },
+                success: function () {
+                    console.log(bangCapList.children().find(target).closest('div.item'))
+                    $('body').find(target).closest('div.item').remove();
+                    showToast("Xóa dự án thành công", "linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61))");
+                },
+                error: function (xhr, status, error) {
+                    showToast(xhr.responseJSON.message, "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))");
+                }
+            })
+        }
+    }
+
     $(document).on('click', 'i.delete-ky-nang', deleteSkill)
     $(document).on('click', 'i.delete-bang-cap', deleteCertificate)
+    $(document).on('click', 'i.delete-du-an', deleteProject)
 })

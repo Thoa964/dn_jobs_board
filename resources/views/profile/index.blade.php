@@ -133,6 +133,25 @@
                                     @endforeach
                                 </div>
                             </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Dự án cá nhân</h5>
+                                        <i class="fa fa-plus" data-bs-toggle="modal"
+                                           data-bs-target="#addProjectModal" style="cursor: pointer;"></i>
+                                    </div>
+                                </div>
+                                <div class="card-body" id="projectList">
+                                    @foreach($profile->hoSo->duAn ?? [] as $item)
+                                        <div class="d-flex justify-content-between align-items-center mb-2 item">
+                                            <a href="{{ route('Chi tiết dự án', $item->ma_du_an) }}">{{ $item->ten_du_an }}</a>
+
+                                            <i class="fas fa-trash text-danger ms-3 delete-du-an" style="cursor: pointer;"
+                                               data-id="{{ $item->ma_du_an }}" data-title="{{ $item->ten_du_an }}"></i>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         @endif
                     </div>
                     <div class="tab-pane fade" id="password" role="tabpanel">
@@ -164,7 +183,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -190,7 +208,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="addCertificateModal" tabindex="-1" role="dialog" aria-labelledby="addCertificateModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -216,5 +233,64 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProjectModalLabel">Thêm mới dự án cá nhân</h5>
+                    <i class="fas fa-times" data-bs-dismiss="modal" aria-label="Close" style="cursor: pointer;"></i>
+                </div>
+                <div class="modal-body">
+                    <form id="addProjectForm" class="d-flex flex-column gap-3">
+                        @csrf
+                        <div class="form-group">
+                            <label for="projectName">Tên dự án</label>
+                            <input type="text" class="form-control" id="projectName" name="ten_du_an" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDescription">Mô tả</label>
+                            <textarea class="form-control" id="projectDescription" name="mo_ta" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group d-flex gap-3">
+                            <div class="col-4">
+                                <label for="startDate">Thời gian bắt đầu</label>
+                                <input type="date" class="form-control" id="startDate" name="thoi_gian_bat_dau" required>
+                            </div>
+                            <div class="col-4">
+                                <label for="endDate">Thời gian kết thúc</label>
+                                <input type="date" class="form-control" id="endDate" name="thoi_gian_ket_thuc">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAddProject">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            const startDateInput = $('#startDate');
+            const endDateInput = $('#endDate');
+
+            startDateInput.on('change', function () {
+                const startDateValue = startDateInput.val();
+                endDateInput.prop('disabled', !startDateValue); // Disable if no value, enable otherwise
+                endDateInput.attr('min', startDateValue); // Set minimum value to "Thời gian bắt đầu"
+            });
+
+            endDateInput.on('change', function () {
+                // You can add additional validation or logic here if needed
+            });
+
+            startDateInput.trigger('change');
+
+            $('#btnAddProject').on('click', function () {
+                $('form#addProjectForm').submit();
+            })
+        });
+    </script>
+
     <script src="{{ asset('js/profile.js') }}"></script>
 @endsection

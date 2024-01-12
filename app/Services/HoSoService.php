@@ -49,4 +49,19 @@ class HoSoService
     {
         return $this->hoSoRepository->deleteKyNang($tai_khoan, $ma_ky_nang);
     }
+
+    public function insertDuAn($tai_khoan, mixed $data)
+    {
+        return $this->hoSoRepository->insertDuAn($tai_khoan, $data);
+    }
+
+    public function deleteDuAn($tai_khoan, $ma_du_an)
+    {
+        return $this->hoSoRepository->deleteDuAn($tai_khoan, $ma_du_an);
+    }
+
+    public function fetchById($maHoSo)
+    {
+        return $this->hoSoRepository->fetchById($maHoSo);
+    }
 }

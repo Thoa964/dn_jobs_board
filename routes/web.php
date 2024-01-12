@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\BaiDangCuaToiController;
 use App\Http\Controllers\DangKyUngTuyenController;
+use App\Http\Controllers\DuAnCaNhanController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HoSoController;
 use App\Http\Controllers\NganhNgheController;
 use App\Http\Controllers\PhuongController;
 use App\Http\Controllers\ProfileController;
@@ -75,6 +77,16 @@ Route::group(['middleware' => 'auth'], function () {
        Route::delete('/bang-cap/{ma_bang_cap}', [ProfileController::class, 'deleteBangCap'])->name('Xóa bằng cấp');
        Route::post('/ky-nang', [ProfileController::class, 'insertKyNang'])->name('Thêm mới kỹ năng');
        Route::delete('/ky-nang/{ma_ky_nang}', [ProfileController::class, 'deleteKyNang'])->name('Xóa kỹ năng');
+       Route::post('/du-an', [ProfileController::class, 'insertDuAn'])->name('Thêm mới dự án');
+       Route::delete('/du-an/{ma_du_an}', [ProfileController::class, 'deleteDuAn'])->name('Xóa dự án');
+    });
+
+    Route::group(['prefix' => 'du-an'], function () {
+        Route::get('/{ma_du_an}', [DuAnCaNhanController::class, 'show'])->name('Chi tiết dự án');
+    });
+
+    Route::group(['prefix' => 'ho-so'], function () {
+        Route::get('/{ma_ho_so}', [HoSoController::class, 'show'])->name('Chi tiết hồ sơ');
     });
 
     Route::group(['prefix' => 'nganh-nghe'], function () {

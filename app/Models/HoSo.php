@@ -33,4 +33,8 @@ class HoSo extends Model
     {
         return $this->belongsTo(User::class, 'tai_khoan', 'tai_khoan');
     }
+
+    public function duAn(): HasMany {
+        return $this->hasMany(DuAnCaNhan::class, 'ma_ho_so', 'ma_ho_so');
+    }
 }

@@ -39,4 +39,21 @@ class HoSoRepository extends BaseRepository
     {
         return $this->model->where('tai_khoan', $tai_khoan)->first()->kyNang()->where('ma_ky_nang', $ma_ky_nang)->delete();
     }
+
+    public function insertDuAn($tai_khoan, mixed $data)
+    {
+        return $this->model->where('tai_khoan', $tai_khoan)->first()->duAn()->create($data);
+    }
+
+    public function deleteDuAn($tai_khoan, $ma_du_an)
+    {
+        return $this->model->where('tai_khoan', $tai_khoan)->first()->duAn()->where('ma_du_an', $ma_du_an)->delete();
+    }
+
+    public function fetchById($maHoSo)
+    {
+        return $this->model->with(['taiKhoan', 'bangCap', 'kyNang', 'duAn'])
+            ->where('ma_ho_so', $maHoSo)
+            ->first();
+    }
 }

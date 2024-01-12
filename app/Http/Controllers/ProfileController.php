@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTransferObjects\UpdateProfileData;
 use App\Http\Requests\InsertBangCapRequest;
+use App\Http\Requests\InsertDuAnRequest;
 use App\Http\Requests\InsertKyNangRequest;
 use App\Http\Requests\UpdateHoSoRequest;
 use App\Http\Requests\UpdateProfileRequest;
@@ -82,5 +83,14 @@ class ProfileController extends Controller
 
     public function deleteKyNang($ma_ky_nang) {
         return $this->hoSoService->deleteKyNang(Auth::user()->tai_khoan, $ma_ky_nang);
+    }
+
+    public function insertDuAn(InsertDuAnRequest $request) {
+        $data = $request->validated();
+        return $this->hoSoService->insertDuAn(Auth::user()->tai_khoan, $data);
+    }
+
+    public function deleteDuAn($ma_du_an) {
+        return $this->hoSoService->deleteDuAn(Auth::user()->tai_khoan, $ma_du_an);
     }
 }
