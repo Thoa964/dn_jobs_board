@@ -56,4 +56,18 @@ class UserService
 
         return true;
     }
+
+    public function getUsers()
+    {
+        return $this->userRepository->getUsers();
+    }
+
+    public function createUser(mixed $data)
+    {
+        $data['mat_khau'] = bcrypt(Common::DEFAULT_PASSWORD);
+        $data['trang_thai'] = Common::ACTIVATED;
+        $data['ma_quyen'] = Common::USER;
+        $data['ngay_hoat_dong'] = now()->format('Y-m-d');
+        return $this->userRepository->createUser($data);
+    }
 }

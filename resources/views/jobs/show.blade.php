@@ -25,7 +25,7 @@
                 <div class="col-md-3">
                     <div class="d-flex flex-column gap-3 justify-content-end">
                         <a href="{{ route('Danh sách ứng viên', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Danh sách ứng viên</a>
-                        @if($dangUngTuyen <= 0)
+                        @if($dangUngTuyen <= 0 || $baiDang->trang_thai = 0)
                             <a href="{{ route('Sửa bài', ['ma_bai_dang' => $baiDang->ma_bai_dang]) }}" class="main-btn">Sửa bài</a>
                         @endif
                     </div>

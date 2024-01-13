@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\Common;
 use App\Models\User;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -66,5 +67,47 @@ class UserRepository extends BaseRepository
         return $this->model->with('hoSo')
             ->where('tai_khoan', $tai_khoan)
             ->first()->hoSo->ma_ho_so;
+    }
+
+    public function getNewUserCount()
+    {
+        return $this->model
+            ->where('trang_thai', Common::ACTIVATED)
+            ->where('ma_quyen', Common::USER)
+            ->where('created_at', '>=', now()->subDays(Common::MONTH_DAYS))
+            ->count();
+    }
+
+    public function getCompanyPendingCount()
+    {
+        return $this->model
+            ->where('trang_thai', Common::DEACTIVATED)
+            ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->where('created_at', '>=', now()->subDays(Common::MONTH_DAYS))
+            ->count();
+    }
+
+    public function getTopFiveCompaniesWithMostPosts()
+    {
+        return $this->model
+            ->where('trang_thai', Common::ACTIVATED)
+            ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->withCount('danhSachBaiDang')
+            ->orderBy('danh_sach_bai_dang_count', 'desc')
+            ->limit(5)
+            ->get();
+    }
+
+    public function getUsers()
+    {
+        return $this->model
+            ->where('ma_quyen', Common::USER)
+            ->where('trang_thai', Common::ACTIVATED)
+            ->get();
+    }
+
+    public function createUser(mixed $data)
+    {
+        return $this->model->create($data);
     }
 }

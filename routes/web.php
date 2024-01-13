@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BaiDangController;
@@ -96,4 +98,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'password'], function () {
         Route::post('/change', [ChangePasswordController::class, 'changePassword'])->name('Đổi mật khẩu');
     });
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('Trang thống kê');
+    Route::get('/users', [UserController::class, 'index'])->name('Quản lý người dùng');
+    Route::post('/users', [UserController::class, 'save'])->name('Tạo mới người dùng');
 });

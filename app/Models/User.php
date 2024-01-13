@@ -39,6 +39,7 @@ class User extends Authenticatable
         'gioi_tinh',
         'ngay_sinh',
         'ten_cong_ty',
+        'ngay_hoat_dong',
     ];
 
     protected $appends = [
@@ -99,5 +100,9 @@ class User extends Authenticatable
 
     public function isDoanhNghiep(): bool {
         return $this->ma_quyen == Common::DOANH_NGHIEP;
+    }
+
+    public function isAdmin(): bool {
+        return $this->ma_quyen == Common::ADMIN;
     }
 }

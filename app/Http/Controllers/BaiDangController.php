@@ -106,6 +106,6 @@ class BaiDangController extends Controller
     {
         $data = $request->validated();
         $this->baiDangService->update($data, $maBaiDang);
-        return redirect()->back()->with('success', 'Cập nhật bài đăng thành công');
+        return redirect()->route('Chi tiết công việc', $maBaiDang)->with('success', 'Cập nhật bài đăng thành công');
     }
 }

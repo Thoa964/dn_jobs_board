@@ -12,4 +12,10 @@ final class Common extends Enum
     const MALE = 'Nam';
     const FEMALE = 'Nữ';
     const DOANH_NGHIEP = 3;
+    const ADMIN = 1;
+    const USER = 2;
+    const MONTH_DAYS = 30;
+    const ACTIVATED = 1;
+    const DEACTIVATED = 0;
+    const DEFAULT_PASSWORD = 'thoa2503';
 }

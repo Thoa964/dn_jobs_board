@@ -58,4 +58,20 @@ class DangKyUngTuyenRepository extends BaseRepository
                 'trang_thai' => $trangThai
             ]);
     }
+
+    public function getApplyCount()
+    {
+        return $this->model
+            ->where('trang_thai', 'Đã đăng ký')
+            ->where('ngay_dang_ky', '>=', now()->subDays(Common::MONTH_DAYS))
+            ->count();
+    }
+
+    public function getApplySuccessCount()
+    {
+        return $this->model
+            ->where('trang_thai', 'Đã duyệt')
+            ->where('ngay_dang_ky', '>=', now()->subDays(Common::MONTH_DAYS))
+            ->count();
+    }
 }

@@ -25,6 +25,7 @@ class BaiDangRepository extends BaseRepository
     {
         return $this->model->with(['author', 'nganhNghe'])
             ->where('thoi_gian_ket_thuc', '>=', date('Y-m-d'))
+            ->where('trang_thai', 1)
             ->orderBy('created_at', 'desc')
             ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
     }
@@ -42,6 +43,7 @@ class BaiDangRepository extends BaseRepository
         ?WorkType $workType
     ): LengthAwarePaginator {
         $result = $this->model->with(['author', 'nganhNghe'])
+            ->where('trang_thai', 1)
             ->where(function ($query) use ($keyword) {
                 $query->where('tieu_de', 'like', '%' . $keyword . '%')
                     ->orWhere('mo_ta', 'like', '%' . $keyword . '%');
@@ -69,5 +71,13 @@ class BaiDangRepository extends BaseRepository
     public function update($data, $maBaiDang) {
         return $this->model->where('ma_bai_dang', $maBaiDang)
             ->update($data);
+    }
+
+    public function getNewPostCount()
+    {
+        return $this->model
+            ->where('created_at', '>=', now()->subDays(Common::MONTH_DAYS))
+            ->where('job_cao_du_lieu', false)
+            ->count();
     }
 }

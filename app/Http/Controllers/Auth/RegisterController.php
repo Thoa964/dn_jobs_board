@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\DataTransferObjects\CompanyRegisterData;
+use App\Enums\Common;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyRegisterRequest;
 use App\Providers\RouteServiceProvider;
@@ -10,6 +11,7 @@ use App\Models\User;
 use App\Services\QuanService;
 use Goutte\Client;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -169,8 +171,9 @@ class RegisterController extends Controller
             'ten' => $data['ten'],
             'tai_khoan' => $data['tai_khoan'],
             'mat_khau' => Hash::make($data['mat_khau']),
-            'ma_quyen' => 2,
-            'trang_thai' => 1
+            'ma_quyen' => Common::USER,
+            'ngay_hoat_dong' => Carbon::now(),
+            'trang_thai' => Common::ACTIVATED
         ]);
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Exceptions\CustomException;
 use App\Repositories\BaiDangRepository;
 use App\Repositories\DangKyUngTuyenRepository;
 use App\Repositories\UserRepository;

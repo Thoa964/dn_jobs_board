@@ -49,6 +49,11 @@
                                 <a href="{{ route('Bài đăng của tôi') }}" class="dropdown-item">{{ "Bài đăng của tôi" }}</a>
                             </li>
                         @endif
+                        @if(\Auth::check() && Auth::user()->isAdmin())
+                            <li>
+                                <a href="{{ route('Trang thống kê') }}" class="dropdown-item">{{ "Trang thống kê" }}</a>
+                            </li>
+                        @endif
                         <li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
