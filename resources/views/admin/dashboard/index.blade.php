@@ -59,7 +59,7 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    @php($percentage = $data['applyCount'] / $data['applySuccessCount'] * 100)
+                                    @php($percentage = $data['applySuccessCount'] != 0 ? $data['applyCount'] / $data['applySuccessCount'] * 100 : 0)
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $percentage }}%</div>
                                 </div>
                                 <div class="col">

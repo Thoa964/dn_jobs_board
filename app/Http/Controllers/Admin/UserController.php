@@ -28,4 +28,8 @@ class UserController extends Controller
         $this->userService->createUser($data);
         return redirect()->back()->with('success', 'Thêm người dùng thành công');
     }
+
+    public function blockUser() {
+
+    }
 }
