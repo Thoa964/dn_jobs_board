@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BaiDangController;
 use App\Http\Controllers\BaiDangCuaToiController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DangKyUngTuyenController;
 use App\Http\Controllers\DuAnCaNhanController;
 use App\Http\Controllers\HomeController;
@@ -81,14 +82,11 @@ Route::group(['middleware' => 'auth'], function () {
        Route::delete('/ky-nang/{ma_ky_nang}', [ProfileController::class, 'deleteKyNang'])->name('Xóa kỹ năng');
        Route::post('/du-an', [ProfileController::class, 'insertDuAn'])->name('Thêm mới dự án');
        Route::delete('/du-an/{ma_du_an}', [ProfileController::class, 'deleteDuAn'])->name('Xóa dự án');
+       Route::get('/{ma_ho_so}', [HoSoController::class, 'show'])->name('Chi tiết hồ sơ');
     });
 
     Route::group(['prefix' => 'du-an'], function () {
         Route::get('/{ma_du_an}', [DuAnCaNhanController::class, 'show'])->name('Chi tiết dự án');
-    });
-
-    Route::group(['prefix' => 'ho-so'], function () {
-        Route::get('/{ma_ho_so}', [HoSoController::class, 'show'])->name('Chi tiết hồ sơ');
     });
 
     Route::group(['prefix' => 'nganh-nghe'], function () {
@@ -108,4 +106,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/users/{tai_khoan}/activate', [UserController::class, 'activate'])->name('Mở khóa người dùng');
     Route::get('/users/{tai_khoan}/regenerate-password', [UserController::class, 'regeneratePassword'])
         ->name('Cấp lại mật khẩu');
+    Route::get('/companies/register-request', [CompanyController::class, 'registerRequest'])->name('Doanh nghiệp cần phê duyệt');
+    Route::get('/companies/{tai_khoan}/approve', [CompanyController::class, 'approveRequest'])->name('Duyệt đơn đăng ký');
 });

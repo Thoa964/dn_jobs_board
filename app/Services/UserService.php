@@ -83,7 +83,7 @@ class UserService
         $this->userRepository->unblockUser($taiKhoan);
     }
 
-    #[NoReturn] public function regeneratePassword($taiKhoan)
+    public function regeneratePassword($taiKhoan): void
     {
         $password = Str::random(10);
         $hashedPassword = bcrypt($password);

@@ -1,3 +1,10 @@
+@php
+    $companyRoute = [
+        'Quản lý doanh nghiệp',
+        'Doanh nghiệp cần phê duyệt'
+    ];
+@endphp
+
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -35,7 +42,7 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item @if(in_array($currentRouteName, $companyRoute)) active @endif">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-building"></i>
@@ -44,8 +51,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Danh sách doanh nghiệp</a>
-                <a class="collapse-item" href="utilities-border.html">Doanh nghiệp cần<br>phê duyệt</a>
+                <a class="collapse-item" href="utilities-color.html">Quản lý doanh nghiệp</a>
+                <a class="collapse-item @if($currentRouteName = 'Doanh nghiệp cần phê duyệt') active @endif" onclick="event.preventDefault();" href="{{ route('Doanh nghiệp cần phê duyệt') }}">Doanh nghiệp cần<br>phê duyệt</a>
             </div>
         </div>
     </li>

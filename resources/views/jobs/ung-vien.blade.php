@@ -26,7 +26,7 @@
                 <tr data-id="{{ $donDangKy->ma_ho_so }}">
                     <td>{{ $ungVien->ten }}</td>
                     <td>{{ $ungVien->email }}</td>
-                    <td><a href="#" target="_blank">Xem hồ sơ</a></td>
+                    <td><a href="{{ route('Chi tiết hồ sơ', $ungVien->hoSo->ma_ho_so) }}" target="_blank" class="link-info">Xem hồ sơ</a></td>
                     <td class="{{ $trangThai[$donDangKy->trang_thai] }}">{{ $donDangKy->trang_thai }}</td>
                     <td>
                         @if($donDangKy->trang_thai == 'Đang chờ duyệt')
