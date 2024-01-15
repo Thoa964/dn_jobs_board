@@ -29,7 +29,18 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Thêm người dùng thành công');
     }
 
-    public function blockUser() {
+    public function deactivate($taiKhoan) {
+        $this->userService->blockUser($taiKhoan);
+        return redirect()->back()->with('success', 'Khóa người dùng thành công');
+    }
 
+    public function activate($taiKhoan) {
+        $this->userService->unblockUser($taiKhoan);
+        return redirect()->back()->with('success', 'Mở khóa người dùng thành công');
+    }
+
+    public function regeneratePassword($taiKhoan) {
+        $this->userService->regeneratePassword($taiKhoan);
+        return redirect()->back()->with('success', 'Đặt lại mật khẩu thành công');
     }
 }

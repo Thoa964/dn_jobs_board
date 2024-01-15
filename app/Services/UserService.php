@@ -8,6 +8,8 @@ use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use JetBrains\PhpStorm\NoReturn;
 
 class UserService
 {
@@ -69,5 +71,22 @@ class UserService
         $data['ma_quyen'] = Common::USER;
         $data['ngay_hoat_dong'] = now()->format('Y-m-d');
         return $this->userRepository->createUser($data);
+    }
+
+    public function blockUser($taiKhoan): void
+    {
+        $this->userRepository->blockUser($taiKhoan);
+    }
+
+    public function unblockUser($taiKhoan): void
+    {
+        $this->userRepository->unblockUser($taiKhoan);
+    }
+
+    #[NoReturn] public function regeneratePassword($taiKhoan)
+    {
+        $password = Str::random(10);
+        $hashedPassword = bcrypt($password);
+        $this->userRepository->regeneratePassword($taiKhoan, $hashedPassword);
     }
 }

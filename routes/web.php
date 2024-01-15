@@ -104,4 +104,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('Trang thống kê');
     Route::get('/users', [UserController::class, 'index'])->name('Quản lý người dùng');
     Route::post('/users', [UserController::class, 'save'])->name('Tạo mới người dùng');
+    Route::get('/users/{tai_khoan}/deactivate', [UserController::class, 'deactivate'])->name('Khóa người dùng');
+    Route::get('/users/{tai_khoan}/activate', [UserController::class, 'activate'])->name('Mở khóa người dùng');
+    Route::get('/users/{tai_khoan}/regenerate-password', [UserController::class, 'regeneratePassword'])
+        ->name('Cấp lại mật khẩu');
 });

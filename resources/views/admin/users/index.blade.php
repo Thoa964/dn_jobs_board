@@ -53,17 +53,17 @@
                             </td>
                             <td class="text-center">
                                 @if($user->trang_thai == 1)
-                                    <a href="#" class="btn btn-danger">
+                                    <a href="{{ route('Khóa người dùng', $user->tai_khoan) }}" class="btn btn-danger">
                                         <i class="fas fa-ban"></i>
                                         Khóa
                                     </a>
                                 @else
-                                    <a href="#" class="btn btn-success">
+                                    <a href="{{ route('Mở khóa người dùng', $user->tai_khoan) }}" class="btn btn-success">
                                         <i class="fas fa-check"></i>
                                         Kích hoạt
                                     </a>
                                 @endif
-                                <a href="#" class="btn btn-info">
+                                <a href="{{ route('Cấp lại mật khẩu', $user->tai_khoan) }}" class="btn btn-info">
                                     <i class="fas fa-edit"></i>
                                     Cấp lại mật khẩu
                                 </a>

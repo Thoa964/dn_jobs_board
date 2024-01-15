@@ -102,12 +102,38 @@ class UserRepository extends BaseRepository
     {
         return $this->model
             ->where('ma_quyen', Common::USER)
-            ->where('trang_thai', Common::ACTIVATED)
             ->get();
     }
 
     public function createUser(mixed $data)
     {
         return $this->model->create($data);
+    }
+
+    public function blockUser($taiKhoan): void
+    {
+        $this->model
+            ->where('tai_khoan', $taiKhoan)
+            ->update([
+                'trang_thai' => Common::DEACTIVATED
+            ]);
+    }
+
+    public function unblockUser($taiKhoan): void
+    {
+        $this->model
+            ->where('tai_khoan', $taiKhoan)
+            ->update([
+                'trang_thai' => Common::ACTIVATED
+            ]);
+    }
+
+    public function regeneratePassword($taiKhoan, $password): void
+    {
+        $this->model
+            ->where('tai_khoan', $taiKhoan)
+            ->update([
+                'mat_khau' => $password
+            ]);
     }
 }
