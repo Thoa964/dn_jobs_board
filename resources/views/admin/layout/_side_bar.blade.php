@@ -52,7 +52,7 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="utilities-color.html">Quản lý doanh nghiệp</a>
-                <a class="collapse-item @if($currentRouteName = 'Doanh nghiệp cần phê duyệt') active @endif" onclick="event.preventDefault();" href="{{ route('Doanh nghiệp cần phê duyệt') }}">Doanh nghiệp cần<br>phê duyệt</a>
+                <a class="collapse-item @if($currentRouteName == 'Doanh nghiệp cần phê duyệt') active @endif" @if($currentRouteName == 'Doanh nghiệp cần phê duyệt')onclick="event.preventDefault();" @endif href="{{ route('Doanh nghiệp cần phê duyệt') }}">Doanh nghiệp cần<br>phê duyệt</a>
             </div>
         </div>
     </li>
