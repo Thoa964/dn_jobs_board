@@ -1,6 +1,6 @@
 @extends('admin.layout._master')
 
-@php($title = 'Quản lý người dùng')
+@php($title = 'Quản lý doanh nghiệp')
 
 @section('title')
     {{ $title }}
@@ -27,11 +27,10 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Tài khoản</th>
-                        <th>Họ Tên</th>
+                        <th>Tên công ty</th>
+                        <th>Mã số thuế</th>
                         <th>Email</th>
                         <th>Ngày hoạt động</th>
-                        <th class="text-center">Trạng thái</th>
                         <th class="text-center">Hành động</th>
                     </tr>
                     </thead>
@@ -40,25 +39,18 @@
                     @foreach($users as $user)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $user->tai_khoan }}</td>
-                            <td>{{ $user->ten }}</td>
+                            <td>{{ $user->ten_cong_ty }}</td>
+                            <td>{{ $user->ma_so_thue }}</td>
                             <td>{{ $user->email ?? 'Chưa cập nhật' }}</td>
                             <td>{{ $user->ngay_hoat_dong }}</td>
                             <td class="text-center">
                                 @if($user->trang_thai == 1)
-                                    <span class="badge badge-success">Active</span>
-                                @else
-                                    <span class="badge badge-danger">Deactivated</span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                @if($user->trang_thai == 1)
-                                    <a href="{{ route('Khóa người dùng', $user->tai_khoan) }}" class="btn btn-danger">
+                                    <a href="{{ route('Khóa người dùng', $user->tai_khoan) }}" class="btn btn-danger mb-1">
                                         <i class="fas fa-ban"></i>
                                         Khóa
                                     </a>
                                 @else
-                                    <a href="{{ route('Mở khóa người dùng', $user->tai_khoan) }}" class="btn btn-success">
+                                    <a href="{{ route('Mở khóa người dùng', $user->tai_khoan) }}" class="btn btn-success mb-1">
                                         <i class="fas fa-check"></i>
                                         Kích hoạt
                                     </a>
@@ -75,33 +67,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addSkillModalLabel">Tạo mới người dùng</h5>
-                    <i class="fas fa-times" data-dismiss="modal" aria-label="Close" style="cursor: pointer;"></i>
-                </div>
-                <div class="modal-body">
-                    <form id="addUserForm" action="{{ route('Tạo mới người dùng') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="tai_khoan">Tài khoản</label>
-                            <input type="text" class="form-control" id="tai_khoan" name="tai_khoan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ten">Họ tên</label>
-                            <input type="text" class="form-control" id="ten" name="ten" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success mt-3" id="addUserSubmit">Tạo</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('script')
@@ -109,10 +74,6 @@
         $(document).ready(function () {
             const $dataTable = $('#dataTable');
             $dataTable.DataTable();
-
-            $('#addUserSubmit').on('click', function () {
-                $('#addUserForm').submit();
-            });
         });
     </script>
 @endsection

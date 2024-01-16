@@ -105,4 +105,9 @@ class User extends Authenticatable
     public function isAdmin(): bool {
         return $this->ma_quyen == Common::ADMIN;
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('trang_thai', Common::ACTIVATED);
+    }
 }

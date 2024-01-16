@@ -3,6 +3,11 @@
         'Quản lý doanh nghiệp',
         'Doanh nghiệp cần phê duyệt'
     ];
+
+    $jobRoute = [
+        'Quản lý bài đăng',
+        'Bài đăng cần phê duyệt'
+    ];
 @endphp
 
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -51,13 +56,13 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Quản lý doanh nghiệp</a>
+                <a class="collapse-item @if($currentRouteName == 'Quản lý doanh nghiệp') active @endif" @if($currentRouteName == 'Quản lý doanh nghiệp')onclick="event.preventDefault();" @endif href="{{ route('Quản lý doanh nghiệp') }}">Quản lý doanh nghiệp</a>
                 <a class="collapse-item @if($currentRouteName == 'Doanh nghiệp cần phê duyệt') active @endif" @if($currentRouteName == 'Doanh nghiệp cần phê duyệt')onclick="event.preventDefault();" @endif href="{{ route('Doanh nghiệp cần phê duyệt') }}">Doanh nghiệp cần<br>phê duyệt</a>
             </div>
         </div>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item @if(in_array($currentRouteName, $jobRoute)) active @endif">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePost"
            aria-expanded="true" aria-controls="collapsePost">
             <i class="fas fa-newspaper"></i>
@@ -66,8 +71,8 @@
         <div id="collapsePost" class="collapse" aria-labelledby="headingPost"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Danh sách bài đăng</a>
-                <a class="collapse-item" href="utilities-border.html">Bài đăng cần<br>phê duyệt</a>
+                <a class="collapse-item @if($currentRouteName == 'Quản lý bài đăng') active @endif" @if($currentRouteName == 'Quản lý bài đăng')onclick="event.preventDefault();" @endif href="{{ route('Quản lý bài đăng') }}">Quản lý bài đăng</a>
+                <a class="collapse-item @if($currentRouteName == 'Bài đăng cần phê duyệt') active @endif" @if($currentRouteName == 'Bài đăng cần phê duyệt')onclick="event.preventDefault();" @endif" href="{{ route('Bài đăng cần phê duyệt') }}">Bài đăng cần<br>phê duyệt</a>
             </div>
         </div>
     </li>

@@ -26,8 +26,16 @@ class CompanyRepository extends BaseRepository
     public function getUnverifiedCompanies()
     {
         return $this->model
-            ->where('trang_thai', Common::DEACTIVATED)
+            ->where('trang_thai', Common::NOT_VERIFIED)
             ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->get();
+    }
+
+    public function getCompanies()
+    {
+        return $this->model
+            ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->whereIn('trang_thai', [Common::ACTIVATED, Common::DEACTIVATED])
             ->get();
     }
 }

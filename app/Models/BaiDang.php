@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BaiDang extends Model
 {
@@ -41,5 +42,9 @@ class BaiDang extends Model
 
     public function phuong(): BelongsTo {
         return $this->belongsTo(Phuong::class, 'ma_phuong', 'ma_phuong');
+    }
+
+    public function ungVien(): HasMany {
+        return $this->hasMany(DangKyUngTuyen::class, 'ma_bai_dang', 'ma_bai_dang');
     }
 }

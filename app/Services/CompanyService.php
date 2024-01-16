@@ -29,4 +29,9 @@ class CompanyService
     {
         $this->companyRepository->approveRequest($taiKhoan);
     }
+
+    public function getCompanies()
+    {
+        return $this->companyRepository->getCompanies();
+    }
 }

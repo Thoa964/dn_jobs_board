@@ -24,8 +24,13 @@ class BaiDangRepository extends BaseRepository
     public function fetchAll()
     {
         return $this->model->with(['author', 'nganhNghe'])
+            ->withCount('ungVien')
             ->where('thoi_gian_ket_thuc', '>=', date('Y-m-d'))
-            ->where('trang_thai', 1)
+            ->whereHas('author', function ($query) {
+                $query->where('trang_thai', Common::ACTIVATED);
+            })
+            ->where('trang_thai', Common::APPROVED)
+            ->havingRaw('ung_vien_count < tbl_bai_dang.so_luong')
             ->orderBy('created_at', 'desc')
             ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
     }
@@ -33,6 +38,7 @@ class BaiDangRepository extends BaseRepository
     public function fetchById($maBaiDang)
     {
         return $this->model->with(['author', 'nganhNghe'])
+            ->withCount('ungVien')
             ->where(['ma_bai_dang' => $maBaiDang])
             ->first();
     }
@@ -43,7 +49,10 @@ class BaiDangRepository extends BaseRepository
         ?WorkType $workType
     ): LengthAwarePaginator {
         $result = $this->model->with(['author', 'nganhNghe'])
-            ->where('trang_thai', 1)
+            ->whereHas('author', function ($query) {
+                $query->where('trang_thai', Common::ACTIVATED);
+            })
+            ->where('trang_thai', Common::APPROVED)
             ->where(function ($query) use ($keyword) {
                 $query->where('tieu_de', 'like', '%' . $keyword . '%')
                     ->orWhere('mo_ta', 'like', '%' . $keyword . '%');
@@ -79,5 +88,47 @@ class BaiDangRepository extends BaseRepository
             ->where('created_at', '>=', now()->subDays(Common::MONTH_DAYS))
             ->where('job_cao_du_lieu', false)
             ->count();
+    }
+
+    public function getListRequest()
+    {
+        return $this->model
+            ->where('trang_thai', Common::UNAPPROVED)
+            ->get();
+    }
+
+    public function approve($maBaiDang)
+    {
+        return $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->update(['trang_thai' => Common::APPROVED]);
+    }
+
+    public function reject($maBaiDang)
+    {
+        return $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->update(['trang_thai' => Common::REJECTED]);
+    }
+
+    public function delete($maBaiDang)
+    {
+        return $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->update(['trang_thai' => Common::SOFT_DELETED]);
+    }
+
+    public function restore($maBaiDang)
+    {
+        return $this->model
+            ->where('ma_bai_dang', $maBaiDang)
+            ->update(['trang_thai' => Common::APPROVED]);
+    }
+
+    public function getList()
+    {
+        return $this->model
+            ->whereIn('trang_thai', [Common::APPROVED, Common::SOFT_DELETED])
+            ->get();
     }
 }

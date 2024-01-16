@@ -18,4 +18,9 @@ final class Common extends Enum
     const ACTIVATED = 1;
     const DEACTIVATED = 0;
     const DEFAULT_PASSWORD = 'thoa2503';
+    const NOT_VERIFIED = -1;
+    const APPROVED = 1;
+    const UNAPPROVED = 0;
+    const REJECTED = -1;
+    const SOFT_DELETED = -99;
 }

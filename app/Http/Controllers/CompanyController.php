@@ -24,4 +24,10 @@ class CompanyController extends Controller
         $this->companyService->approveRequest($taiKhoan);
         return redirect()->back()->with('success', 'Duyệt đăng ký thành công');
     }
+
+    public function index()
+    {
+        $users = $this->companyService->getCompanies();
+        return view('admin.company.index', compact('users'));
+    }
 }

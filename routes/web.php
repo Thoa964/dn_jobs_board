@@ -108,4 +108,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         ->name('Cấp lại mật khẩu');
     Route::get('/companies/register-request', [CompanyController::class, 'registerRequest'])->name('Doanh nghiệp cần phê duyệt');
     Route::get('/companies/{tai_khoan}/approve', [CompanyController::class, 'approveRequest'])->name('Duyệt đơn đăng ký');
+    Route::get('/companies/', [CompanyController::class, 'index'])->name('Quản lý doanh nghiệp');
+    Route::get('/bai-dang', [\App\Http\Controllers\Admin\BaiDangController::class, 'index'])->name('Quản lý bài đăng');
+    Route::get('/bai-dang/{ma_bai_dang}/approve', [\App\Http\Controllers\Admin\BaiDangController::class, 'approve'])->name('Duyệt bài đăng');
+    Route::get('/bai-dang/{ma_bai_dang}/reject', [\App\Http\Controllers\Admin\BaiDangController::class, 'reject'])->name('Từ chối bài đăng');
+    Route::get('/bai-dang/{ma_bai_dang}/delete', [\App\Http\Controllers\Admin\BaiDangController::class, 'destroy'])->name('Xóa bài đăng');
+    Route::get('/bai-dang/{ma_bai_dang}/restore', [\App\Http\Controllers\Admin\BaiDangController::class, 'restore'])->name('Khôi phục bài đăng');
+    Route::get('/bai-dang/request', [\App\Http\Controllers\Admin\BaiDangController::class, 'request'])->name('Bài đăng cần phê duyệt');
 });

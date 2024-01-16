@@ -2,6 +2,7 @@
 
 namespace App\DataTransferObjects;
 
+use App\Enums\Common;
 use App\Http\Requests\CompanyRegisterRequest;
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -18,8 +19,8 @@ class CompanyRegisterData extends DataTransferObject
             'ten_cong_ty' => $request->get('ten_cong_ty'),
             'ma_so_thue' => $request->get('ma_so_thue'),
             'ma_phuong' => $request->get('ma_phuong'),
-            'ma_quyen' => 3,
-            'trang_thai' => 0,
+            'ma_quyen' => Common::DOANH_NGHIEP,
+            'trang_thai' => Common::NOT_VERIFIED,
         ];
     }
 }

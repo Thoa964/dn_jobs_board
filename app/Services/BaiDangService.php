@@ -8,6 +8,7 @@ use App\Repositories\PhuongRepository;
 use BenSampo\Enum\Exceptions\InvalidEnumKeyException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class BaiDangService
@@ -86,5 +87,42 @@ class BaiDangService
             $phuong->quan->ten_quan
         );
         return $this->baiDangRepository->update($data, $maBaiDang);
+    }
+
+    public function getListRequest()
+    {
+        return $this->baiDangRepository->getListRequest();
+    }
+
+    public function approve($maBaiDang)
+    {
+        return $this->baiDangRepository->approve($maBaiDang);
+    }
+
+    public function reject($maBaiDang)
+    {
+        return $this->baiDangRepository->reject($maBaiDang);
+    }
+
+    public function destroy($maBaiDang): bool
+    {
+        $baiDang = $this->baiDangRepository->fetchById($maBaiDang);
+
+        if ($baiDang->ung_vien_count > 0) {
+            return false;
+        }
+
+        $this->baiDangRepository->delete($maBaiDang);
+        return true;
+    }
+
+    public function restore($maBaiDang)
+    {
+        return $this->baiDangRepository->restore($maBaiDang);
+    }
+
+    public function getList()
+    {
+        return $this->baiDangRepository->getList();
     }
 }
