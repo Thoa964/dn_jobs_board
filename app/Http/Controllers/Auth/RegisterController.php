@@ -86,7 +86,7 @@ class RegisterController extends Controller
 
         if (!$this->validateSoDienThoai(
             $data['sdt'],
-            $companyData['so_dien_thoai']
+            str_replace(" ", "", $companyData['so_dien_thoai'])
         )) {
             return redirect()
                 ->back()
