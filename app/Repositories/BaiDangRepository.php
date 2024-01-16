@@ -23,14 +23,13 @@ class BaiDangRepository extends BaseRepository
      */
     public function fetchAll()
     {
-        return $this->model->with(['author', 'nganhNghe'])
-            ->withCount('ungVien')
+        return $this->model->with(['author', 'nganhNghe', 'ungVien'])
             ->where('thoi_gian_ket_thuc', '>=', date('Y-m-d'))
             ->whereHas('author', function ($query) {
                 $query->where('trang_thai', Common::ACTIVATED);
             })
             ->where('trang_thai', Common::APPROVED)
-            ->havingRaw('ung_vien_count < tbl_bai_dang.so_luong')
+            ->has('ungVien', '<', \DB::raw('so_luong'))
             ->orderBy('created_at', 'desc')
             ->paginate(Common::DEFAULT_ITEMS_PER_PAGE);
     }

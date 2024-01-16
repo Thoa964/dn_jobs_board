@@ -30,7 +30,6 @@ class HomeController extends Controller
     public function index()
     {
         $danhSachBaiDang = $this->baiDangService->fetchAll();
-        dd($danhSachBaiDang);
         $quan = $this->quanService->getQuan();
         $workType = WorkType::asArray();
 
