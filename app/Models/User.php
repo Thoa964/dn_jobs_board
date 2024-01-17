@@ -110,4 +110,9 @@ class User extends Authenticatable
     {
         return $query->where('trang_thai', Common::ACTIVATED);
     }
+
+    public function donUngTuyen(): HasMany
+    {
+        return $this->hasMany(DangKyUngTuyen::class, 'tai_khoan', 'tai_khoan');
+    }
 }
