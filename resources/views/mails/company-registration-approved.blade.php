@@ -17,17 +17,14 @@
 
         <h3 style="margin-top: 20px;">Các bước tiếp theo:</h3>
         <ul>
-            <li>Vui lòng đăng nhập tại <a href="http://localhost:8000/login"></a>.</li>
+            <li>Vui lòng đăng nhập tại <a href="{{ config('app.url') }}">đây</a>.</li>
             <li>Thiết lập hồ sơ công ty của bạn.</li>
             <li>Khám phá các tài nguyên và công cụ của chúng tôi dành cho doanh nghiệp.</li>
         </ul>
 
-        <img src="{{ asset('images/celebration.gif') }}" alt="Celebration GIF" style="width: 100%; max-width: 300px; margin: 20px auto;">
-
-
         <p style="margin-top: 20px;">Chúng tôi luôn sẵn sàng hỗ trợ bạn trong suốt chặng đường. Nếu bạn có bất kỳ câu hỏi nào, xin vui lòng liên hệ với chúng tôi.</p>
 
         <p>Trân trọng,<br>
-            {{ $companyName }}</p>
+            {{ config('app.name') }}</p>
     </div>
 @endsection

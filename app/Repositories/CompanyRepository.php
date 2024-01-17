@@ -38,4 +38,12 @@ class CompanyRepository extends BaseRepository
             ->whereIn('trang_thai', [Common::ACTIVATED, Common::DEACTIVATED])
             ->get();
     }
+
+    public function findById($taiKhoan)
+    {
+        return $this->model
+            ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->where('tai_khoan', $taiKhoan)
+            ->first();
+    }
 }

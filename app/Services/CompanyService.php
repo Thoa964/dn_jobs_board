@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\Common;
+use App\Mail\CompanyApproved;
 use App\Repositories\CompanyRepository;
 use App\Repositories\UserRepository;
 use Exception;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class CompanyService
 {
@@ -27,6 +29,8 @@ class CompanyService
 
     public function approveRequest($taiKhoan): void
     {
+        $company = $this->companyRepository->findById($taiKhoan);
+        Mail::to($company->email)->send(new CompanyApproved($company->ten_cong_ty));
         $this->companyRepository->approveRequest($taiKhoan);
     }
 

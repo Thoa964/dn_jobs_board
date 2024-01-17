@@ -2,26 +2,32 @@
 
 namespace App\Services;
 
+use App\Mail\JobRequestApproval;
 use App\Repositories\BaiDangRepository;
 use App\Repositories\DangKyUngTuyenRepository;
+use App\Repositories\HoSoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Mail;
 
 class DangKyUngTuyenService
 {
     private DangKyUngTuyenRepository $dangKyUngTuyenRepository;
     private UserRepository $userRepository;
     private BaiDangRepository $baiDangRepository;
+    private HoSoRepository $hoSoRepository;
 
     public function __construct(
         DangKyUngTuyenRepository $dangKyUngTuyenRepository,
         UserRepository $userRepository,
-        BaiDangRepository $baiDangRepository
+        BaiDangRepository $baiDangRepository,
+        HoSoRepository $hoSoRepository
     ) {
         $this->dangKyUngTuyenRepository = $dangKyUngTuyenRepository;
         $this->userRepository = $userRepository;
         $this->baiDangRepository = $baiDangRepository;
+        $this->hoSoRepository = $hoSoRepository;
     }
 
     public function ungTuyen($maBaiDang) {
@@ -60,11 +66,17 @@ class DangKyUngTuyenService
 
     public function updateTrangThaiDangKy($maBaiDang, $data)
     {
+        $data['trang_thai'] = (bool) $data['trang_thai'];
         if($data['trang_thai']) {
             $trangThai = 'Đã duyệt';
         } else {
             $trangThai = 'Đã từ chối';
         }
+
+        $job = $this->baiDangRepository->fetchById($maBaiDang);
+        $user = $this->hoSoRepository->fetchById($data['ma_ho_so'])->taiKhoan;
+
+        Mail::to($user->email)->send(new JobRequestApproval($job, $user, $data['trang_thai']));
 
         $this->dangKyUngTuyenRepository->updateTrangThaiDangKy($maBaiDang, $data['ma_ho_so'], $trangThai);
     }

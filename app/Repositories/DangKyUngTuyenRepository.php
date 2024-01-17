@@ -39,6 +39,7 @@ class DangKyUngTuyenRepository extends BaseRepository
     public function getSoLuongUngTuyen($maBaiDang) {
         return $this->model
             ->where('ma_bai_dang', $maBaiDang)
+            ->where('trang_thai', '!=', 'Đã từ chối')
             ->count();
     }
 

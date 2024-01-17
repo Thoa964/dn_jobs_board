@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\User;
+use App\Models\BaiDang;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,18 +11,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CompanyApproved extends Mailable
+class JobRequestApproval extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private string $companyName;
+    private User $user;
+    private BaiDang $job;
+    private bool $trangThai;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($companyName)
+    public function __construct($job, $user, $trangThai)
     {
-        $this->companyName = $companyName;
+        $this->user = $user;
+        $this->job = $job;
+        $this->trangThai = $trangThai;
     }
 
     /**
@@ -29,7 +35,7 @@ class CompanyApproved extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Company Registration Approved',
+            subject: $this->trangThai ? 'Ứng tuyển công việc thành công' : 'Ứng tuyển công việc bị từ chối',
         );
     }
 
@@ -39,9 +45,10 @@ class CompanyApproved extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.company-registration-approved',
+            view: $this->trangThai ? 'mails.job-apply-approved' : 'mails.job-apply-rejected',
             with: [
-                'companyName' => $this->companyName
+                'user' => $this->user,
+                'job' => $this->job
             ]
         );
     }
