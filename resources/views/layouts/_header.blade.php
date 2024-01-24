@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-xl fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><img claass="w-100" src="{{ asset('img/icon/company-logo.svg') }}" alt=""></a>
+        <a class="navbar-brand" href="#"><img claass="w-100" src="{{ asset('img/icon/company-logo.png') }}" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
