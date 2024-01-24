@@ -2,6 +2,11 @@ main {
     margin-top: -20px;
 }
 
+.header-logo{
+  height: 70px;
+  width: auto !important;
+}
+
 .nav-link:hover {
     color: #92d35e !important;
     /*font-weight: bold;*/
