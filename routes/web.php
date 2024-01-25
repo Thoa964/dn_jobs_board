@@ -40,6 +40,10 @@ Route::group(['prefix' => ''], function () {
     Route::get('/register/company', [RegisterController::class, 'companyRegister'])->name(__('register.company'));
     Route::post('/register/company', [RegisterController::class, 'doRegister'])->name('company.register');
     Route::post('/ward', [PhuongController::class, 'getPhuongByQuan'])->name('getPhuongByQuan');
+
+    Route::group(['prefix' => 'company'], function () {
+        Route::get('/{id}', [CompanyController::class, 'show'])->name('Thông tin công ty');
+    });
 });
 
 Route::group(['prefix' => 'jobs'], function () {

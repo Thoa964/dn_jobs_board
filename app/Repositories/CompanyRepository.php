@@ -39,11 +39,20 @@ class CompanyRepository extends BaseRepository
             ->get();
     }
 
-    public function findById($taiKhoan)
+    public function findByTaiKhoan($taiKhoan)
     {
         return $this->model
             ->where('ma_quyen', Common::DOANH_NGHIEP)
             ->where('tai_khoan', $taiKhoan)
+            ->first();
+    }
+
+    public function findById($id)
+    {
+        return $this->model
+            ->with(['hoSo', 'danhSachBaiDang'])
+            ->where('ma_quyen', Common::DOANH_NGHIEP)
+            ->where('id', $id)
             ->first();
     }
 }

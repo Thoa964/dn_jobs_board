@@ -77,3 +77,36 @@ ul.pagination {
 .mt-140 {
   margin-top: 140px;
 }
+
+.company-container {
+  margin-top: -140px;
+  padding: 1rem 0;
+}
+
+.header {
+  margin-top: 140px;
+}
+
+.logo img {
+  border: 1px solid #DDD6FE;
+  border-radius: 10px;
+  height: 180px;
+  box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
+}
+
+.main-content {
+  padding: 2rem 0;
+}
+
+.job-listings {
+  list-style: none;
+  padding: 0 2rem;
+}
+
+.job-listings li {
+  margin-bottom: 1rem;
+}
+
+.company-description {
+  padding: 0 2rem;
+}

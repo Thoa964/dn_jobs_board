@@ -29,7 +29,7 @@ class CompanyService
 
     public function approveRequest($taiKhoan): void
     {
-        $company = $this->companyRepository->findById($taiKhoan);
+        $company = $this->companyRepository->findByTaiKhoan($taiKhoan);
         Mail::to($company->email)->send(new CompanyApproved($company->ten_cong_ty));
         $this->companyRepository->approveRequest($taiKhoan);
     }
@@ -37,5 +37,10 @@ class CompanyService
     public function getCompanies()
     {
         return $this->companyRepository->getCompanies();
+    }
+
+    public function getCompany($id)
+    {
+        return $this->companyRepository->findById($id);
     }
 }

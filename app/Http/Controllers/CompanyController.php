@@ -30,4 +30,10 @@ class CompanyController extends Controller
         $users = $this->companyService->getCompanies();
         return view('admin.company.index', compact('users'));
     }
+
+    public function show($id)
+    {
+        $company = $this->companyService->getCompany($id);
+        return view('company.show', compact('company'));
+    }
 }

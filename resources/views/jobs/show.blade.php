@@ -9,9 +9,9 @@
                      src="{{ asset($baiDang->author->avatar_path) }}"
                      alt="{{ $baiDang->author->ten_cong_ty }}">
             </div>
-            <div class="col-md-7">
-                <span>{{ $baiDang->author->ten_cong_ty }}</span>
+            <div class="col-md-7 d-flex flex-column">
                 <h3>{{ $baiDang->tieu_de }}</h3>
+                <span><a href="{{ route('Thông tin công ty', $baiDang->author->id) }}">{{ $baiDang->author->ten_cong_ty }}</a></span>
                 <span>Hạn nộp hồ sơ: <strong>{{ $baiDang->thoi_gian_ket_thuc }}</strong></span>
             </div>
             @if($user && $user->ma_quyen == 2 && $user->hoSo)
